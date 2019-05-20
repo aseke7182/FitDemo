@@ -7,12 +7,12 @@
     </tr>
     <tr>
         <td>Kizatov Arman</td>
-        <td></td>
-        <td><a href="https://github.com/"></a></td>
+        <td>kizatov.armashka.05@gmail.com</td>
+        <td><a href="https://github.com/KizatovArman">KizatovArman</a></td>
     </tr>
     <tr>
         <td>Mussayev Askar</td>
         <td>aseke7182@gmail.com</td>
-        <td><a href="https://github.com/aseke7182/webdev2019">Aseke7182</a></td>
+        <td><a href="https://github.com/aseke7182">Aseke7182</a></td>
     </tr>
 </table>
