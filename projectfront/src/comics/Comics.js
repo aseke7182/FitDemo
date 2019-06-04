@@ -1,44 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getAllCategories, getCategoryById, setActiveCategory } from '../actions/comics.action';
-
+import { getAllCatalogs, setActiveCatalog, getAllComicsOfCatalog } from '../actions/comics.action';
 import './Comics.css';
 
 class Comics extends Component {
 
     componentDidMount(){
-        this.props.getAllCategories();
+        this.props.getAllCatalogs();
     }
 
-    handleCategoryClick = (category, index) => {
-        const { setActiveCategory, getCategoryById } = this.props;
-        setActiveCategory(index);
-        getCategoryById(category.id);
-    }
-
-    render(){
-
-        const { categoryData: {currentCategory, allCategories}, setActiveCategory, getAllCategories, getCategoryById} = this.props;
+    handleCatalogClick = (catalog, index) => {
+        const { setActiveCatalog, getAllComicsOfCatalog } = this.props;
+        setActiveCatalog(index);
+        getAllComicsOfCatalog(catalog.id)
         console.log(this.props);
+    }
+
+    render() {
+        
+        const { comicsData: { catalogs, currentCatalog, currentCatalogComics}, setActiveCatalog } = this.props;
 
         return (
-            allCategories && allCategories.length ? (
-                <div className="categories">
+
+            catalogs && catalogs.length ? (
+                <div className="Catalogs">
                     {
-                        allCategories.map((category, index) => (
+                        catalogs.map((catalog, index) => (
                             <div
-                            key={category.id}
-                            className={`Categories__category ${ currentCategory && category.id === currentCategroy.id ? 'Categories__category--active': '' }`}
-                            onClick={()=> {this.handleCategoryClick(category, index)}}
+                                
+                                key={catalog.id}
+                                className={`Catalogs__catalog ${ currentCatalog && catalog.id === currentCatalog.id ? 'Catalogs__catalog--active': ''}`}
+                                onClick={()=> {this.handleCatalogClick(catalog, index)}}
                             >
-                                {category.name}
+                                {catalog.name}
+                                <img className="Catalog__picture" src={catalog.image}/>
                             </div>
                         ))
                     }
                 </div>
-            ): (
-                <div>Error</div>
+
+            ):(
+                <div>
+                    Calalogs are unavailable!
+                </div>
             )
         );
     }
@@ -46,12 +51,13 @@ class Comics extends Component {
 
 function mapStateToProps(state){
     return {
-        categoryData: state.comics
+        comicsData: state.comics
     }
 }
 
-export default connect(mapStateToProps,{
-    setActiveCategory,
-    getAllCategories,
-    getCategoryById,
-})(Comics);
+export default connect(mapStateToProps,
+    {
+        getAllCatalogs,
+        getAllComicsOfCatalog,
+        setActiveCatalog,
+    })(Comics);

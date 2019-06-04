@@ -1,38 +1,38 @@
-import { getComicsCategories, getComicsCategoryById } from '../services/comics';
+import { getComicsCatalogs, getComicsCatalogDetail } from '../services/comics';
 
-export const GET_COMICS_CATEGORIES = 'GET_COMICS_CATEGORIES';
-export const GET_COMICS_CATEGORY_BY_ID = 'GET_COMICS_CATEGORY_BY_ID';
-export const SET_CURRENT_COMICS_CATEGORY = 'SET_CURRENT_COMICS_CATEGORY';
+export const GET_COMICS_CATALOGS = 'GET_COMICS_CATALOGS';
+export const GET_COMICS_CATALOG_DETAIL = 'GET_COMICS_CATALOG_DETAIL';
+export const SET_CURRENT_COMICS_CATALOG = 'SET_CURRENT_COMICS_CATALOG';
 
-export const getAllCategories = () => dispatch => {
-    getComicsCategories()
+export const getAllCatalogs = () => dispatch => {
+    getComicsCatalogs()
     .then(response => {
         dispatch({
-            type: GET_COMICS_CATEGORIES,
+            type: GET_COMICS_CATALOGS,
             payload: response.data
         });
     })
     .catch(error =>{
-        console.log(error)
+        alert('error occured: ' + error);
     })
 }
 
-export const getCategoryById = comicsId => dispatch => {
-    getComicsCategoryById(comicsId)
+export const getAllComicsOfCatalog = comicsId => dispatch => {
+    getComicsCatalogDetail(comicsId)
     .then(response =>{
         dispatch({
-            type: GET_COMICS_CATEGORY_BY_ID,
+            type: GET_COMICS_CATALOG_DETAIL,
             payload: response.data
         });
     })
     .catch(error =>{
-        console.log(error);
+        alert('Error occured: ' + error)
     })
 }
 
-export const setActiveCategory = index => dispatch => {
+export const setActiveCatalog = index => dispatch => {
     dispatch({
-        type: SET_CURRENT_COMICS_CATEGORY,
+        type: SET_CURRENT_COMICS_CATALOG,
         payload: index
     });
 }
