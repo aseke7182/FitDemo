@@ -13,7 +13,7 @@ class CatalogList(generics.ListCreateAPIView):
 
 class CatalogInfo(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CatalogSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (AllowAny,)
     queryset = Catalog.objects.all()
 
 
