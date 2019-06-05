@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import { createStore, compose, applyMiddleware } from "redux";
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import reducers from './reducers';
+import reducers from './_reducers';
 
 import "./index.css";
 
-import App from "./App";
+import App from "./_app/App";
 
 const __DEV__ = process.env.NODE_ENV;
 
