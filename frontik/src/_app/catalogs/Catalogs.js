@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
+import { getComicsy } from '../../_actions/comicsy.action';
 
 import './Catalogs.css';
 
@@ -11,13 +12,14 @@ class Catalogs extends Component {
         this.props.getCatalogs();
     }
 
-    handleCatalogClick = (user, index) => {
-        const { setActiveCatalog, } = this.props;
+    handleCatalogClick = (catalog, index) => {
+        const { setActiveCatalog, getComicsy } = this.props;
         setActiveCatalog(index);
+        getComicsy(catalog.id);
     }
 
     render() {
-        const { catalogsData: { catalogs, currentCatalog}, setActiveCatalog} = this.props;
+        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy } = this.props;
 
         return (
 
@@ -31,7 +33,7 @@ class Catalogs extends Component {
                                 onClick={()=> {this.handleCatalogClick(catalog, index)}}
                             >
                                 {catalog.name}
-                                <img src={catalog.image} />
+                                <img className="Catalog__picture" src={catalog.image} />
                             </div>
                         ))
                     }
@@ -46,7 +48,7 @@ class Catalogs extends Component {
 function mapStateToProps(state){
     return {
         catalogsData: state.catalog,
-
+        comicsyData: state.comics
     }
 }
 
@@ -54,4 +56,5 @@ export default connect(mapStateToProps,
     {
         getCatalogs,
         setActiveCatalog,
+        getComicsy
     })(Catalogs);

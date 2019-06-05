@@ -33,7 +33,7 @@ class MagazineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Magazine
-        fields = ('id', 'name', 'portion', 'owner', 'catalog', 'price', 'image')
+        fields = ('id', 'name', 'owner', 'catalog', 'price', 'image')
 
     def create(self, validated_data):
         catalog = validated_data.pop('catalog')
