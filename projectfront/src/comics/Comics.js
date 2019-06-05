@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getAllCatalogs, setActiveCatalog, getAllComicsOfCatalog } from '../actions/comics.action';
+import { getAllCatalogs, setActiveCatalog } from '../actions/catalogs.action';
+import { getAllComicsOfCatalog } from '../actions/comics.action';
+
 import './Comics.css';
 
 class Comics extends Component {
@@ -10,54 +12,48 @@ class Comics extends Component {
         this.props.getAllCatalogs();
     }
 
-    handleCatalogClick = (catalog, index) => {
-        const { setActiveCatalog, getAllComicsOfCatalog } = this.props;
-        setActiveCatalog(index);
-        getAllComicsOfCatalog(catalog.id)
-        console.log(this.props);
-    }
+    render(){
 
-    render() {
-        
-        const { comicsData: { catalogs, currentCatalog, currentCatalogComics}, setActiveCatalog } = this.props;
+        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsData: {currentCatalogComics} } = this.props;
+        console.log(this.props);
 
         return (
-
-            catalogs && catalogs.length ? (
-                <div className="Catalogs">
+            <div>
+                <div>
+                    Comics:<br/>
+                </div>
+                { currentCatalogComics && currentCatalogComics.length ? (
+                <div className="CurrentCatalogComics">
                     {
-                        catalogs.map((catalog, index) => (
+                        currentCatalogComics.map((curcatcomics, index) => (
                             <div
-                                
-                                key={catalog.id}
-                                className={`Catalogs__catalog ${ currentCatalog && catalog.id === currentCatalog.id ? 'Catalogs__catalog--active': ''}`}
-                                onClick={()=> {this.handleCatalogClick(catalog, index)}}
+                                key={curcatcomics.id}
+                                className={`AllComics__catalogcomics`}
                             >
-                                {catalog.name}
-                                <img className="Catalog__picture" src={catalog.image}/>
+                                {curcatcomics.name}
+                                {curcatcomics.price}
                             </div>
                         ))
                     }
                 </div>
-
-            ):(
-                <div>
-                    Calalogs are unavailable!
-                </div>
-            )
+            ): (
+                <div>No Comics</div>
+            )}
+            </div>
         );
     }
 }
 
 function mapStateToProps(state){
     return {
-        comicsData: state.comics
+        catalogsData: state.catalog,
+        comicsData: state.comics,
     }
 }
 
 export default connect(mapStateToProps,
     {
         getAllCatalogs,
-        getAllComicsOfCatalog,
         setActiveCatalog,
-    })(Comics);
+        getAllComicsOfCatalog,
+    })(Comics)
