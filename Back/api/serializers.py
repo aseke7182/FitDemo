@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from api.models import Catalog, Food, Ingredient, Developer, Bonus, Check
+from api.models import Catalog, Developer, Check, Magazine, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -27,31 +27,17 @@ class CatalogSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'image')
 
 
-class IngredientSerializer(serializers.ModelSerializer):
+class MagazineSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=True)
-    amounts = serializers.IntegerField(required=True)
-
-    class Meta:
-        model = Ingredient
-        fields = ('id', 'name', 'amounts',)
-
-
-class FoodSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-    ingredients = IngredientSerializer(read_only=True, many=True)
-    # ingr = IngredientSerializer(write_only=True, many=True)
     owner = UserSerializer(read_only=True)
 
     class Meta:
-        model = Food
-        fields = ('id', 'name', 'portion', 'owner', 'catalog', 'price', 'ingredients', 'ingr')
+        model = Magazine
+        fields = ('id', 'name', 'portion', 'owner', 'catalog', 'price',)
 
     def create(self, validated_data):
         catalog = validated_data.pop('catalog')
-        ingredients = validated_data.pop('ingr')
-        instance = Food.objects.create(catalog=catalog, **validated_data)
-        instance.ingredients.set(ingredients)
+        instance = Magazine.objects.create(catalog=catalog, **validated_data)
         return instance
 
 
@@ -59,14 +45,14 @@ class CheckSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     status = serializers.CharField(required=True)
     owner = UserSerializer(read_only=True)
-    foods = FoodSerializer(read_only=True, many=True)
+    magazines = MagazineSerializer(read_only=True, many=True)
 
     class Meta:
         model = Check
-        fields = ('id', 'status', 'cost', 'owner', 'foods', 'fo')
+        fields = ('id', 'status', 'cost', 'owner', 'magazines', 'ma')
 
     def create(self, validated_data):
-        foods = validated_data.pop('fo')
+        foods = validated_data.pop('ma')
         cost = 0
         for i in foods:
             cost += i.price
@@ -83,12 +69,15 @@ class DeveloperSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'email', 'github', 'phone',)
 
 
-class BonusSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    discount = serializers.FloatField(required=True)
     owner = UserSerializer(read_only=True)
-    type = serializers.CharField(required=True)
 
     class Meta:
-        model = Bonus
-        fields = ('id', 'discount', 'owner', 'type')
+        model = Comment
+        fields = ('id', 'text', 'rating', 'magazine')
+
+    def create(self, validated_data):
+        magazine = validated_data.pop('magazine')
+        instance = Comment.objects.create(magazine=magazine, **validated_data)
+        return instance

@@ -1,6 +1,7 @@
-import { LOGIN } from '../actions/user.actions';
+import { LOGIN,LOGOUT } from '../actions/user.actions';
 
-const initialState = {};
+let user = localStorage.getItem('token');
+const initialState = user ? { logged: true, user } : {} ;
 
 export default function(state = initialState, action){
     switch (action.type) {
@@ -8,7 +9,12 @@ export default function(state = initialState, action){
         case LOGIN:
             return {
                 ...state,
-                userToken: action.payload
+                logged: true
+            }
+        case LOGOUT:
+            return{
+                ...state,
+                logged: false
             }
         default:
             return state;

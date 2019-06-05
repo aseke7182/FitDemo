@@ -1,17 +1,8 @@
-from rest_framework import generics, filters
-from rest_framework.decorators import permission_classes
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from django.http import Http404
-from api.serializers import UserSerializer, CatalogSerializer, FoodSerializer, IngredientSerializer, CheckSerializer
-from api.models import Catalog, Food, Ingredient, Check
-from rest_framework.response import Response
-
-
-# from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
-# from django_filters.rest_framework import DjangoFilterBackend
-# from api.filters import TaskFilter
+from api.serializers import *
+from api.models import *
 
 
 class CatalogList(generics.ListCreateAPIView):
@@ -26,34 +17,27 @@ class CatalogInfo(generics.RetrieveUpdateDestroyAPIView):
     queryset = Catalog.objects.all()
 
 
-class IngredientList(generics.ListCreateAPIView):
-    serializer_class = IngredientSerializer
-    permission_classes = (IsAuthenticated,)
-    queryset = Ingredient.objects.all()
+class AllMagazinesList(generics.ListAPIView):
+    serializers_class = MagazineSerializer
+    permission_classes = (AllowAny,)
+    queryset = Magazine.objects.all()
 
 
-class IngredientInfo(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = IngredientSerializer
-    permission_classes = (IsAuthenticated,)
-    queryset = Ingredient.objects.all()
-
-
-class FoodList(generics.ListCreateAPIView):
-    serializer_class = FoodSerializer
+class MagazineList(generics.ListCreateAPIView):
+    serializer_class = MagazineSerializer
     permission_classes = (AllowAny,)
 
     def get_queryset(self):
         catalog = get_object_or_404(Catalog, id=self.kwargs.get('pk'))
         queryset = catalog.foods.all()
-        # queryset = queryset.objects.for_user()
         return queryset
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class FoodInfo(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = FoodSerializer
+class MagazineInfo(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = MagazineSerializer
     permission_classes = (IsAuthenticated,)
     lookup_url_kwarg = 'pk2'
 
@@ -63,7 +47,7 @@ class FoodInfo(generics.RetrieveUpdateDestroyAPIView):
         return queryset
 
 
-class CheckList(generics.ListCreateAPIView):
+class BasketList(generics.ListCreateAPIView):
     serializer_class = CheckSerializer
     permission_classes = (IsAuthenticated,)
 
@@ -77,12 +61,19 @@ class CheckList(generics.ListCreateAPIView):
 
 
 class UsersFoodList(generics.ListCreateAPIView):
-    serializer_class = FoodSerializer
+    serializer_class = MagazineSerializer
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         catalog = get_object_or_404(Catalog, id=self.kwargs.get('pk'))
-        # catalog = Catalog.objects.all()
         foods = catalog.foods.all()
         return foods.filter(owner=self.request.user)
 
+
+class MagazineComment(generics.ListCreateAPIView):
+    serializers_class = CommentSerializer
+    permission_classes = (IsAuthenticated,)
+    lookup_url_kwarg = 'pk2'
+
+    def get_queryset(self):
+        catalog = get_object_or_404(Catalog, id=self.kwargs.get('pk'))

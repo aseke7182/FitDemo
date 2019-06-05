@@ -7,7 +7,6 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from rest_framework.decorators import permission_classes
 
 
 class UserList(generics.ListAPIView):

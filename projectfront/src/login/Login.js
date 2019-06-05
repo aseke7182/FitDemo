@@ -1,41 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { doLogin } from '../actions/user.actions';
+import { doLogin, doLogout } from '../actions/user.actions';
 
 import './Login.css';
 
 class Login extends Component {
 
-    // componentDidMount(){
-    //     const token = localStorage.getItem('token');
-    //     if(token){
-    //         this.props.logged = true;
-    //     }
-    //     else{
-    //         this.props.logged = false;
-    //     }
-    // }
+    componentDidMount(){
+        // const token = localStorage.getItem('token');
+        // console.log(token);
+    }
 
-    handlePerformLogin = (uname, passw) => {
+    handlePerformLogin = () => {
+        let uname = document.getElementById('username').value;
+        let passw = document.getElementById('password').value;
         const { doLogin } = this.props;
         doLogin(uname, passw);
+    }
+    handlePerformLogout = () =>{
+        const { doLogout} = this.props;
+        doLogout();
     }
 
     render() {
 
-        const { doLogin } = this.props;
-        console.log(this.props);
-
         return (
             <div>
-                <div>
-                    <form>
-                        <input type="text" placeholder="Username"></input>
-                        <input type="password" placeholder="Password"></input>
-                        <button onClick={()=>{this.handlePerformLogin('a_kizatov','12345678')}}>Login</button>
-                    </form>                    
-                </div>
+                <input type="text" placeholder="Username" id="username"></input>
+                <input type="password" placeholder="Password" id="password"></input>
+                <button onClick={()=>{this.handlePerformLogin()}}>Login</button>
+                <button onClick={()=>{this.handlePerformLogout()}}>Logout</button>
             </div>
         );
     }
@@ -49,5 +44,5 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps,
     {
-        doLogin
+        doLogin,doLogout
     })(Login);
