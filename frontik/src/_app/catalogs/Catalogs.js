@@ -7,7 +7,7 @@ import './Catalogs.css';
 
 class Catalogs extends Component {
 
-    componentDidMount(){
+    componentDidMount = () => {
         this.props.getCatalogs();
     }
 
@@ -17,7 +17,7 @@ class Catalogs extends Component {
     }
 
     render() {
-        const { catalogsData: { catalogs, currentCatalog}, setActiveCatalog} = this.props;
+        const { catalogsData: { catalogs, currentCatalog} } = this.props;
 
         return (
 
@@ -31,7 +31,7 @@ class Catalogs extends Component {
                                 onClick={()=> {this.handleCatalogClick(catalog, index)}}
                             >
                                 {catalog.name}
-                                <img src={catalog.image} />
+                                <img src={catalog.image} alt="sorry, no img" />
                             </div>
                         ))
                     }
