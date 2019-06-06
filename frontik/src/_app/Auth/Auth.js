@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
+import {login, logout} from '../../_actions/auth.action';
 import './Auth.css';
 
 export class Auth extends Component {
@@ -16,7 +17,14 @@ export class Auth extends Component {
 
     handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(this.state);
+    }
+
+    handleonClick = (e) => {
+        this.props.login(this.state.username,this.state.password);
+    }
+
+    logout = (e) => {
+        this.props.logout();
     }
 
     render() {
@@ -25,11 +33,16 @@ export class Auth extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" id="username" placeholder="username" onChange={this.handleOnChange} value= {this.state.username} />
                     <input type="password" id="password" placeholder="password" onChange={this.handleOnChange} value = { this.state.password} />
-                    <button>Log In</button>
+                    <button onClick={this.handleonClick} >Log In</button>
+                    <button onClick={this.logout}>Log Out</button>
                 </form>
             </div>
         )
     }
 }
 
-export default Auth
+
+export default connect(null,
+{
+    login, logout
+})(Auth);
