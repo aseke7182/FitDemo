@@ -1,0 +1,9 @@
+.CurrentCatalogComics{
+    display: flex;
+    justify-content: space-evenly;
+}
+.CurrentCatalogComics__comics{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

@@ -23,8 +23,8 @@ export class Auth extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" id="username" placeholder="username" onChange={this.handleOnChange} />
-                    <input type="password" id="password" placeholder="password" onChange={this.handleOnChange} />
+                    <input type="text" id="username" placeholder="username" onChange={this.handleOnChange} value= {this.state.username} />
+                    <input type="password" id="password" placeholder="password" onChange={this.handleOnChange} value = { this.state.password} />
                     <button>Log In</button>
                 </form>
             </div>

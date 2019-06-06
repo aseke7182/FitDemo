@@ -18,7 +18,7 @@ class CatalogInfo(generics.RetrieveUpdateDestroyAPIView):
 
 
 class AllMagazinesList(generics.ListAPIView):
-    serializers_class = MagazineSerializer
+    serializer_class = MagazineSerializer
     permission_classes = (AllowAny,)
     queryset = Magazine.objects.all()
 
