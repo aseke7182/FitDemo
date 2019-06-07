@@ -10,12 +10,14 @@
     padding-bottom: 5px;
 }
 
-.footer a {
+.footer a, .footer p {
     color: darkseagreen;
     text-decoration: none;
+    display: inline;
+
 }
 
-.footer a:hover {
+.footer a:hover, .footer p:hover {
     color: rgb(81, 248, 81);
 }
 
