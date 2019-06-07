@@ -16,6 +16,7 @@ export class Header extends Component {
                         else if( localStorage.getItem('token') ){
                             <li className="header_elements"><NavLink to="/auth">Logout</NavLink></li>
                         }
+            			<li className="header_elements"><NavLink to="/register">Sign Up</NavLink></li>
             		</ul>
             	</nav>
             </header>
