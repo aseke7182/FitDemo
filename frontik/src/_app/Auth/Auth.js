@@ -21,10 +21,6 @@ export class Auth extends Component {
 
     handleonClick = (e) => {
         this.props.login(this.state.username,this.state.password);
-        if(localStorage.getItem('token')!=='')
-            setTimeout(() => {
-                this.props.history.push('');
-            }, 1000);
     }
 
     logout = (e) => {
