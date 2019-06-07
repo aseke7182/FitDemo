@@ -75,7 +75,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'text', 'rating', 'magazine', 'owner')
+
 
     def create(self, validated_data):
         magazine = validated_data.pop('magazine')

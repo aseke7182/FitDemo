@@ -7,6 +7,7 @@ import Comicsy  from './comicsy/Comicsy'
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Mainpage from './Mainpage/mainpage';
+import Register from './register/register';
 
 class App extends Component{
   render(){
@@ -18,6 +19,7 @@ class App extends Component{
           <Route path="/catalogs" component = { Catalogs}/>
           <Route path="/catalogs" component = { Comicsy}/>
           <Route path="/auth" component = {Auth}/>
+          <Route path="/register" component = {Register}/>
           <Footer/>
         </div>
       </BrowserRouter>

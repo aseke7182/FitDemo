@@ -1,7 +1,8 @@
-import {loginn, logoutt} from '../_services/auth';
+import {loginn, logoutt, signupp } from '../_services/auth';
 
 export const  LOGIN = 'LOGIN';
 export const  LOGOUT = 'LOGOUT';
+export const SIGNUP = 'SIGNUP';
 
 export const login = ( username, password ) => dispatch => {
     loginn(username,password).then( res => {
@@ -23,6 +24,17 @@ export const logout = () => dispatch => {
             payload: res.data
         })
         localStorage.clear();
+    }).catch(error => {
+        alert(error);
+    })
+}
+
+export const signup = (username, email, password) => dispatch => {
+    signupp(username,email,password).then(res => {
+        dispatch({
+            type: SIGNUP,
+            payload: res.data
+        })
     }).catch(error => {
         alert(error);
     })
