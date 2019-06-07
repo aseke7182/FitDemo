@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
-import { getComicsy } from '../../_actions/comicsy.action';
+import { getComicsy, setActiveComics } from '../../_actions/comicsy.action';
+import { getComments } from '../../_actions/comments.action';
 
 import './Catalogs.css';
 
@@ -20,7 +21,7 @@ class Catalogs extends Component {
     }
 
     render() {
-        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy } = this.props;
+        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy, currentComics}, getComicsy, setActiveComics, commentsData: { currentComicsComments }, getComments } = this.props;
 
         return (
 
@@ -51,7 +52,8 @@ class Catalogs extends Component {
 function mapStateToProps(state){
     return {
         catalogsData: state.catalog,
-        comicsyData: state.comics
+        comicsyData: state.comics,
+        commentsData: state.comments,
     }
 }
 
@@ -59,5 +61,7 @@ export default connect(mapStateToProps,
     {
         getCatalogs,
         setActiveCatalog,
-        getComicsy
+        getComicsy,
+        setActiveComics,
+        getComments
     })(Catalogs);
