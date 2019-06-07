@@ -23,8 +23,8 @@ class App extends Component{
           <Route path="/catalogs" component = { Catalogs}/>
           <Route path="/auth" component = {Auth}/>
           <Route path="/register" component = {Register}/>
-          <Footer/>
           </Switch>
+          <Footer/>
         </div>
       </BrowserRouter>
     )
