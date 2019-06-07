@@ -16,7 +16,12 @@ class App extends Component{
       <BrowserRouter>
         <div>
           <Header/>
-
+          <Route exact path='/' component= {Mainpage}/>
+          <Route path="/catalogs" component = { Catalogs}/>
+          <Route path="/catalogs" component = { Comicsy }/>
+          <Route path="/catalogs" component = { Comments}/>
+          <Route path="/auth" component = {Auth}/>
+          <Route path="/register" component = {Register}/>
           <Footer/>
         </div>
       </BrowserRouter>
