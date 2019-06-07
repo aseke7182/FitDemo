@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import {NavLink} from 'react-router-dom';
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
 import { getComicsy, setActiveComics } from '../../_actions/comicsy.action';
 import { getComments } from '../../_actions/comments.action';
@@ -27,6 +27,7 @@ class Comicsy extends Component {
             <div>
                 <div>
                     Comics List:
+                    <NavLink to="/catalogs">Go Back</NavLink>
                 </div>
                 { currentCatalogComicsy && currentCatalogComicsy.length ? (
                 <div className="CurrentCatalogComics">
