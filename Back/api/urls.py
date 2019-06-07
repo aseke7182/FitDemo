@@ -6,6 +6,7 @@ urlpatterns = [
     path('catalogs/<int:pk>/', views.CatalogInfo.as_view()),
     path('catalogs/<int:pk>/magazines/', views.MagazineList.as_view()),
     path('catalogs/<int:pk>/magazines/<int:pk2>/', views.MagazineInfo.as_view()),
+    path('catalogs/<int:pk>/magazines/<int:pk2>/comments/', views.MagazineComment.as_view()),
     path('login/', views.login),
     path('logout/', views.logout),
     path('signup/', views.create_user),
@@ -15,5 +16,4 @@ urlpatterns = [
     path('basket/', views.BasketList.as_view()),
     path('userfoods/<int:pk>/', views.UsersFoodList.as_view()),
     path('allmagazines/', views.AllMagazinesList.as_view()),
-    path('catalogs/<int:pk>/magazines/<int:pk2>/comments/',views.MagazineComment.as_view())
 ]

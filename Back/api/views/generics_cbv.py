@@ -71,9 +71,9 @@ class UsersFoodList(generics.ListCreateAPIView):
 
 
 class MagazineComment(generics.ListCreateAPIView):
-    serializers_class = CommentSerializer
-    permission_classes = (IsAuthenticated,)
-    lookup_url_kwarg = 'pk2'
+    serializer_class = CommentSerializer
+    permission_classes = (AllowAny,)
 
     def get_queryset(self):
-        catalog = get_object_or_404(Catalog, id=self.kwargs.get('pk'))
+        magazines = get_object_or_404(Magazine, id=self.kwargs.get('pk2'))
+        return magazines.comments.all()

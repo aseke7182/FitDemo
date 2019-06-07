@@ -18,3 +18,11 @@ export  function loginn(username,password){
 export function logoutt(){
     return http.post('logout/',{})
 }
+
+export function signupp(username,email,password){
+    return axios.post('http://localhost:8000/api/signup/',{
+        username: username,
+        email: email,
+        password: password
+    })
+}

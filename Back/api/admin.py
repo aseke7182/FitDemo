@@ -14,3 +14,4 @@ class DeveloperAdmin(admin.ModelAdmin):
 
 admin.site.register(Magazine)
 admin.site.register(Check)
+admin.site.register(Comment)

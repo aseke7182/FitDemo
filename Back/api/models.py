@@ -33,4 +33,5 @@ class Developer(models.Model):
 class Comment(models.Model):
     text = models.CharField(max_length=500)
     rating = models.IntegerField()
-    magazine = models.ForeignKey(Magazine,on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    magazine = models.ForeignKey(Magazine, on_delete=models.CASCADE, related_name='comments')
