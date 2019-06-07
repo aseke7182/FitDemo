@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
 import { getComicsy } from '../../_actions/comicsy.action';
@@ -32,7 +33,7 @@ class Catalogs extends Component {
                                 className={`Catalogs__catalog ${ currentCatalog && catalog.id === currentCatalog.id ? 'Catalog__catalog--active': ''}`}
                                 onClick={()=> {this.handleCatalogClick(catalog, index)}}
                             >
-                                {catalog.name}
+                               <NavLink to={'/catalogs/' + catalog.id } > {catalog.name} </NavLink>
                                 <img className="Catalog__picture" src={catalog.image} alt="here shoul be img" />
                             </div>
                         ))
