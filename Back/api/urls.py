@@ -15,5 +15,5 @@ urlpatterns = [
     path('basket/', views.BasketList.as_view()),
     path('userfoods/<int:pk>/', views.UsersFoodList.as_view()),
     path('allmagazines/', views.AllMagazinesList.as_view()),
-    path('catalogs/<int:pk>/magazines/<int:pk2>/comments/',views.MagazineComment.as_view())
+    path('catalogs/<int:pk>/magazines/<int:pk2>/comments/',views.MagazineComment.as_view()),
 ]
