@@ -33,7 +33,7 @@ class Comicsy extends Component {
                                 <br></br>
                                 <img src={curcatcomics.image}></img>
                                 <br></br>
-                                <p>₸{ curcatcomics.price}</p>
+                                <p className="price">₸{ curcatcomics.price}</p>
                                 <br></br>
                             </div>
                         ))
