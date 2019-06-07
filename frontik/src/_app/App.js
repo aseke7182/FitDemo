@@ -3,7 +3,8 @@ import './App.css';
 import Auth from './Auth/Auth';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Catalogs from './catalogs/Catalogs';
-import Comicsy  from './comicsy/Comicsy'
+import Comicsy  from './comicsy/Comicsy';
+import Comments from './comments/Comments';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Mainpage from './Mainpage/mainpage';
@@ -16,13 +17,14 @@ class App extends Component{
         <div>
           <Header/>
           <Switch>
-            <Route exact path='/' component= {Mainpage}/>
-            <Route path="/catalogs/:comics_id" component = { Comicsy}/>
-            <Route path="/catalogs" component = { Catalogs}/>
-            <Route path="/auth" component = {Auth}/>
-            <Route path="/register" component = {Register}/>
-          </Switch>
+          <Route exact path='/' component= {Mainpage}/>
+          <Route path="/catalogs/:comics_id/comments" component = { Comments}/>
+          <Route path="/catalogs/:comics_id" component = { Comicsy }/>
+          <Route path="/catalogs" component = { Catalogs}/>
+          <Route path="/auth" component = {Auth}/>
+          <Route path="/register" component = {Register}/>
           <Footer/>
+          </Switch>
         </div>
       </BrowserRouter>
     )

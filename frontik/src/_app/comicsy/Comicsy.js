@@ -2,19 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
-import { getComicsy } from '../../_actions/comicsy.action';
+import { getComicsy, setActiveComics } from '../../_actions/comicsy.action';
+import { getComments } from '../../_actions/comments.action';
 
 import './Comicsy.css';
 
 class Comicsy extends Component {
 
     componentDidMount(){
-        this.props.getCatalogs();
+        // this.props.getCatalogs();
+    }
+
+    handleComicsyClick = (catalogId, comics, index) => {
+        const { setActiveComics, getComments } = this.props;
+        setActiveComics(index);
+        getComments(catalogId, comics.id);
     }
 
     render() {
 
-        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy } = this.props;
+        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments } = this.props;
 
         return (
             <div>
@@ -29,13 +36,16 @@ class Comicsy extends Component {
                             <div
                                 key={curcatcomics.id}
                                 className={`CurrentCatalogComics__comics`}
+                                onClick={()=>{this.handleComicsyClick(curcatcomics.catalog, curcatcomics, index)}}
                             >
+                                <NavLink to={this.props.location.pathname + '/comments'} >
                                 <p>{curcatcomics.name}</p>
                                 <br></br>
                                 <img src={curcatcomics.image}></img>
                                 <br></br>
                                 <p className="price">₸{ curcatcomics.price}</p>
                                 <br></br>
+                                </NavLink>
                             </div>
                         ))
                     }
@@ -51,7 +61,7 @@ class Comicsy extends Component {
 function mapStateToProps(state){
     return {
         catalogsData: state.catalog,
-        comicsyData: state.comics
+        comicsyData: state.comics,
     }
 }
 
@@ -59,5 +69,7 @@ export default connect(mapStateToProps,
     {
         getCatalogs,
         setActiveCatalog,
-        getComicsy
+        getComicsy,
+        setActiveComics,
+        getComments
     })(Comicsy);
