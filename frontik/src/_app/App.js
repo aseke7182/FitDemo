@@ -9,6 +9,7 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import Mainpage from './Mainpage/mainpage';
 import Register from './register/register';
+import Basket from './Basket/Basket';
 
 class App extends Component{
   render(){
@@ -23,6 +24,7 @@ class App extends Component{
           <Route path="/catalogs" component = { Catalogs}/>
           <Route path="/auth" component = {Auth}/>
           <Route path="/register" component = {Register}/>
+          <Route path="/basket" component={Basket}/>
           </Switch>
           <Footer/>
         </div>
