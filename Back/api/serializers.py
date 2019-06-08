@@ -57,7 +57,7 @@ class CheckSerializer(serializers.ModelSerializer):
         for i in foods:
             cost += i.price
         instance = Check.objects.create(cost=cost, **validated_data)
-        instance.foods.set(foods)
+        instance.magazines.set(foods)
         return instance
 
 
