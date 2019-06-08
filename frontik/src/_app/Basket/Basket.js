@@ -17,6 +17,7 @@ class Basket extends Component {
             ma.push(massiv[i].id);
         }
         createBasket(orderStatus, ma);
+        this.props.history.push('');
     }
 
     render() {
