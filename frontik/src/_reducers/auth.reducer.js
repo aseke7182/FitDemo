@@ -1,6 +1,8 @@
 import { LOGIN, LOGOUT, SIGNUP } from '../_actions/auth.action';
 
-const initialState = {};
+const initialState = {
+    logged: localStorage.getItem('token')!==null
+};
 
 export default function( state = initialState, action ){
 
@@ -9,10 +11,12 @@ export default function( state = initialState, action ){
         case LOGIN:
             return{
                 ...state,
+                logged: true
             }
         case LOGOUT:
             return {
                 ...state,
+                logged: false
             }
         case SIGNUP:
             return {
