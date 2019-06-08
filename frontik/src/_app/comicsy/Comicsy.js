@@ -28,7 +28,7 @@ class Comicsy extends Component {
     render() {
 
         const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments, addToBasket, basketData:{ basketItems} } = this.props;
-
+        
         return (
             <div>
                 <div>

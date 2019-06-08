@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {login, logout} from '../../_actions/auth.action';
+import {login} from '../../_actions/auth.action';
 import './Auth.css';
 
 export class Auth extends Component {
@@ -23,10 +23,6 @@ export class Auth extends Component {
         this.props.login(this.state.username,this.state.password);
     }
 
-    logout = (e) => {
-        this.props.logout();
-    }
-
     render() {
         return (
             <div>
@@ -34,7 +30,6 @@ export class Auth extends Component {
                     <input type="text" id="username" placeholder="username" onChange={this.handleOnChange} value= {this.state.username} />
                     <input type="password" id="password" placeholder="password" onChange={this.handleOnChange} value = { this.state.password} />
                     <button onClick={this.handleonClick} >Log In</button>
-                    <button onClick={this.logout}>Log Out</button>
                 </form>
             </div>
         )
@@ -44,5 +39,5 @@ export class Auth extends Component {
 
 export default connect(null,
 {
-    login, logout
+    login
 })(Auth);
