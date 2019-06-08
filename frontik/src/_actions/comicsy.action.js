@@ -1,7 +1,8 @@
-import { getComicsByCatalogId } from '../_services/comicsy';
+import { getComicsByCatalogId, createComics } from '../_services/comicsy';
 
 export const GET_COMICS_BY_CATALOG_ID = 'GET_COMICS_BY_CATALOG_ID';
 export const SET_ACTIVE_COMICS = 'SET_ACTIVE_COMICS';
+export const CREATE_COMICS = 'CREATE_COMICS';
 
 export const getComicsy = catalogId => dispatch => {
     getComicsByCatalogId(catalogId)
@@ -21,4 +22,15 @@ export const setActiveComics = index => dispatch => {
         type: SET_ACTIVE_COMICS,
         payload: index
     });
+}
+
+export const createComicss = (data,catalogID) => dispatch => {
+    createComics(data,catalogID).then(res => {
+        dispatch({
+            type: CREATE_COMICS,
+            payload: res.payload
+        });
+    }).catch(error => {
+        alert(error);
+    })
 }

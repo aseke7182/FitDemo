@@ -1,6 +1,8 @@
-import { GET_COMMENT_BY_COMICS_ID } from '../_actions/comments.action';
+import { GET_COMMENT_BY_COMICS_ID, ADD_COMMENT } from '../_actions/comments.action';
 
-const initialState = {}
+const initialState = {
+	currentComicsComments: []
+}
 
 export default function(state = initialState, action){
 	switch(action.type) {
@@ -9,6 +11,12 @@ export default function(state = initialState, action){
 			return {
 				...state,
 				currentComicsComments: action.payload
+			}
+		case ADD_COMMENT:
+			let newcurrentComicsComments = [...state.currentComicsComments, action.payload]
+			return {
+				...state,
+				currentComicsComments: newcurrentComicsComments
 			}
 		default:
 			return state;
