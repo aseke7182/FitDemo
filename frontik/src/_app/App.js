@@ -19,7 +19,7 @@ class App extends Component{
           <Header/>
           <Switch>
           <Route exact path='/' component= {Mainpage}/>
-          <Route path="/catalogs/:comics_id/comments" component = { Comments}/>
+          {/* <Route path="/catalogs/:comics_id/comments" component = { Comments}/> */}
           <Route path="/catalogs/:comics_id" component = { Comicsy }/>
           <Route path="/catalogs" component = { Catalogs}/>
           <Route path="/auth" component = {Auth}/>

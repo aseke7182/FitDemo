@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Comments from '../comments/Comments';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
@@ -35,31 +36,34 @@ class Comicsy extends Component {
                     Comics List:
                     <NavLink to="/catalogs">Go Back</NavLink>
                 </div>
+                
                 { currentCatalogComicsy && currentCatalogComicsy.length ? (
                 <div className="CurrentCatalogComics">
-                    {
+                    
+                        {
                         currentCatalogComicsy.map((curcatcomics, index) => (
                             <div
                                 key={curcatcomics.id}
                                 className={`CurrentCatalogComics__comics`}
                                 onClick={()=>{this.handleComicsyClick(curcatcomics.catalog, curcatcomics, index)}}
                             >
-                                <NavLink to={this.props.location.pathname + '/comments'} >
+                                {/* <NavLink to={this.props.location.pathname + '/comments'} > */}
                                 <p>{curcatcomics.name}</p>
                                 <br></br>
                                 <img src={curcatcomics.image}></img>
                                 <br></br>
                                 <p className="price">₸{ curcatcomics.price}</p>
                                 <br></br>
-                                </NavLink>
+                                {/* </NavLink> */}
                                 <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button>
                             </div>
                         ))
-                    }
+                    }                    
                 </div>
-            ): (
+                ): (
                 <div>No Comics for this Catalog</div>
             )}
+            <Comments/>
             </div>
         );
     }
