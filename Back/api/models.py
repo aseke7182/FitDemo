@@ -31,7 +31,14 @@ class Developer(models.Model):
 
 
 class Comment(models.Model):
-    text = models.CharField(max_length=500)
+    text = models.CharField(max_length=9500)
     rating = models.IntegerField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     magazine = models.ForeignKey(Magazine, on_delete=models.CASCADE, related_name='comments')
+
+
+class Message(models.Model):
+    text = models.CharField(max_length=250)
+    sender = models.CharField(max_length=250, default="codefazzer@gmail.com")
+    password = models.CharField(default="123456789Bd", max_length=200)
+    dest = models.CharField(max_length=100)
