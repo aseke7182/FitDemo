@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
 import { getComicsy, setActiveComics } from '../../_actions/comicsy.action';
 import { getComments } from '../../_actions/comments.action';
+import { addToBasket } from '../../_actions/basket.action';
 
 import './Comicsy.css';
 
@@ -19,9 +20,14 @@ class Comicsy extends Component {
         getComments(catalogId, comics.id);
     }
 
+    handleAddToBasket = (comics) => {
+        const { addToBasket } = this.props;
+        addToBasket(comics);
+    }
+
     render() {
 
-        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments } = this.props;
+        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments, addToBasket, basketData:{ basketItems} } = this.props;
 
         return (
             <div>
@@ -46,6 +52,7 @@ class Comicsy extends Component {
                                 <p className="price">₸{ curcatcomics.price}</p>
                                 <br></br>
                                 </NavLink>
+                                <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button>
                             </div>
                         ))
                     }
@@ -62,6 +69,7 @@ function mapStateToProps(state){
     return {
         catalogsData: state.catalog,
         comicsyData: state.comics,
+        basketData: state.basket,
     }
 }
 
@@ -71,5 +79,6 @@ export default connect(mapStateToProps,
         setActiveCatalog,
         getComicsy,
         setActiveComics,
-        getComments
+        getComments,
+        addToBasket
     })(Comicsy);
