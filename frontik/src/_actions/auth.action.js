@@ -11,6 +11,8 @@ export const login = ( username, password ) => dispatch => {
             payload: res.data
         })
         localStorage.setItem('token',res.data.token);
+        localStorage.setItem('username',res.data.username);
+        localStorage.setItem('email',res.data.email);
         window.location.reload();
     }).catch(error => {
         alert(error);

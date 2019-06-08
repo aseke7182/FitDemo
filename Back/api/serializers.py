@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from api.models import Catalog, Developer, Check, Magazine, Comment
+from api.models import Catalog, Developer, Check, Magazine, Comment, Message
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -61,7 +61,6 @@ class CheckSerializer(serializers.ModelSerializer):
         return instance
 
 
-
 class DeveloperSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
 
@@ -82,3 +81,15 @@ class CommentSerializer(serializers.ModelSerializer):
         magazine = validated_data.pop('magazine')
         instance = Comment.objects.create(magazine=magazine, **validated_data)
         return instance
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    sender = serializers.CharField(read_only=True)
+    password = serializers.CharField(read_only=True)
+    text = serializers.CharField(required=True)
+    dest = serializers.CharField(required=True)
+
+    class Meta:
+        model = Message
+        fields = '__all__'

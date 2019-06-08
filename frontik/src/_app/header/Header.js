@@ -12,8 +12,10 @@ export class Header extends Component {
     render() {
 
         let {logged} = this.props.logged
+        let username = localStorage.getItem('username');
         const files = logged==true ? (
             <div>
+                <li className="header_elements"><NavLink to="">{username}</NavLink></li>
                 <li className="header_elements"><NavLink to="/basket">Basket</NavLink></li>
                 <li className="header_elements" onClick={this.logout} ><NavLink to="">Logout</NavLink></li>
             </div>

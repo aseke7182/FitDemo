@@ -23,7 +23,8 @@ def login(request):
     token, created = Token.objects.get_or_create(user=user)
     # username = request.user.username
     username = token.user.username
-    return Response({'token': token.key, 'username': username})
+    email = token.user.email
+    return Response({'token': token.key, 'username': username, 'email': email})
 
 
 @api_view(['POST'])

@@ -1,7 +1,9 @@
+import smtplib
+from django.core.mail import send_mail
 from django.http import Http404
 from rest_framework.views import APIView
 from api.models import Developer
-from api.serializers import DeveloperSerializer
+from api.serializers import DeveloperSerializer,MessageSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -44,3 +46,22 @@ class DeveloperInfo(APIView):
         developers = self.get_developers(pk)
         developers.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Message(APIView):
+    def post(self, request):
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            mes = serializer.save()
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(mes.sender, mes.password)
+            server.sendmail(mes.sender, mes.dest, mes.text)
+            print(mes.text)
+            server.quit()
+            print(serializer.data.get('sender'))
+            if mes:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors)

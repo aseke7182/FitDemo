@@ -1,4 +1,4 @@
-import {ADD_TO_BASKET, REMOVE_FROM_BASKET, CREATE_BASKET} from '../_actions/basket.action';
+import {ADD_TO_BASKET, REMOVE_FROM_BASKET, CREATE_BASKET, SEND_MESSAGE} from '../_actions/basket.action';
 
 const initialState = {
 	basketItems: []
@@ -28,6 +28,11 @@ export default function(state = initialState, action){
 				basketItems: newestnewestbasket,
 				orderDetail: action.payload
 			}
+		case SEND_MESSAGE:
+			return{
+				...state
+			} 
+
 		default:
 			return state;
 	}

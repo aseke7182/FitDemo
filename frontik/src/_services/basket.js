@@ -14,3 +14,10 @@ export function createbaskett(status, ma){
         ma: ma
     })
 }
+
+export function sendmessage(text,email){
+    return http.post('send/',{
+        text: text,
+        dest: email
+    })
+}
