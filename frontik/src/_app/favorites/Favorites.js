@@ -8,6 +8,7 @@ class Favorites extends Component {
 
     componentDidMount=()=>{
         this.props.getFavorites()
+        console.log(this.props);
     }
 
     handleRemoveFromFavorites = (favoriteId, massiv, targetComicsId) => {
@@ -21,20 +22,18 @@ class Favorites extends Component {
                 ma.push(massiv[i].id)
             }
         }
-
-        // console.log(ma);
-
         removeFromFavorites(favoriteId, ma);
         
-        window.location.reload()
-
+        this.props.favoritesData.favorites.forEach(fav =>{
+            this.props.favoritesData.favorites["0"].magazines= fav.magazines.filter(el =>{
+                return el.id!==targetComicsId;
+            })
+        })
     }
 
     render() {
         const {favoritesData: {favorites}} = this.props;
-
         return (
-            
             favorites && favorites.length ? (
                 <div className="Favorites">
                     {
@@ -42,9 +41,6 @@ class Favorites extends Component {
                             <div
                                 key={fav.id}
                             >
-                                {/* {fav.magazines.id} */}
-                                {/* {console.log(fav.magazines)} */}
-                                {/* {fav.id} */}
                                 {
                                     fav.magazines.map((mag,index) => (
                                         <div key={mag.id} >

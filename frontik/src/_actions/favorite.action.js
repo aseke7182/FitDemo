@@ -12,6 +12,8 @@ export const getFavorites = () => dispatch => {
             type: GET_FAVORITES_LIST,
             payload: response.data
         });
+    }).catch(error =>{
+        console.log(error)
     })
 }
 

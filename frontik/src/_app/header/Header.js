@@ -54,9 +54,9 @@ export class Header extends Component {
             	</nav>
                 <nav className="mobileNavigation">
                     <div className="mobile-header group_of_elements">
-                        <NavLink to=""><img src="https://ui-ex.com/images250_/transparent-logos-team-1.png" className="mobile-logo"></img></NavLink>
+                        <NavLink to=""><img src="https://ui-ex.com/images250_/transparent-logos-team-1.png" alt="Our Logo" className="mobile-logo"></img></NavLink>
                         <ul>
-                            <li className="header_elements mobile-menu-writing"><a>Menu</a>
+                            <li className="header_elements mobile-menu-writing"><p>Menu</p>
                                 <ul>
                                     <li><NavLink to="/catalogs">Catalogs</NavLink></li>
                                     {mobilefiles}

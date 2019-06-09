@@ -13,7 +13,8 @@ export const login = ( username, password ) => dispatch => {
         localStorage.setItem('token',res.data.token);
         localStorage.setItem('username',res.data.username);
         localStorage.setItem('email',res.data.email);
-        window.location.reload();
+        window.location.href = "http://localhost:3000";
+        // window.location.reload();
     }).catch(error => {
         alert(error);
     })

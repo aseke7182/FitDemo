@@ -19,20 +19,36 @@ class Comicsy extends Component {
         orderby: 'name',
         asc: false,
         min_price: '',
-        max_price: ''
+        max_price: '',
+        favoriteIds: []// this.props.favoritesData.favorites["0"].magazines.
         // favoriteId: this.props.favoritesData.favorites.id
     }
 
     componentDidMount(){
-        // this.props.getCatalogs();
         this.props.getFavorites()
+        // let arr = []
+        // console.log(this.props);
+        // this.props.favoritesData.favorites["0"].magazines.forEach(m =>{
+            // arr.push(m.id);
+        // })
+        // this.setState({
+            // favoriteIds: arr
+        // })
+        // console.log(this.state);
+        // this.props.favoritesData.chosenMagazines = [1,2,3];
+        // console.log(this.props);
         const {getComicsy} = this.props;
         getComicsy(this.props.match.params.comics_id);
-        // console.log(this.props.favoritesData.favorites[0]);        
+        // let arr = [];
+        // this.props.favoritesData.favorites["0"].magazines.forEach(el =>{
+            // arr.push(el.id);
+        // })
+        // this.props.favoritesData.chosenMagazines = arr;
+        // let a = JSON.parse(this.props.favoritesData.favorites);
+        // console.log(this.props.favoritesData.favorites[""+ "0" ]);
     }
 
     handleClickGoBack(){
-        // console.log(this.props);
         this.props.catalogsData.currentCatalog = false;
         this.props.comicsyData.currentComics = false; 
     }
@@ -54,9 +70,13 @@ class Comicsy extends Component {
         for(let i = 0; i < massiv.length; i++){
             ma.push(massiv[i]);
         }
+        favoriteId["0"].magazines.forEach(element => {
+            ma.push(element.id);
+        });
         favoriteId = favoriteId["0"].id
-        console.log(ma)
+        // console.log(ma)
         addToFavorites(favoriteId, ma);
+        // console.log(this.props);
     }
 
     handleChooseMagazines = (comics) => {
@@ -111,7 +131,7 @@ class Comicsy extends Component {
     }
 
     render() {
-        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments, addToBasket, basketData:{ basketItems}, favoritesData: {favorites, chosenMagazines} } = this.props;
+        const { comicsyData: {currentCatalogComicsy}, favoritesData: { chosenMagazines} } = this.props;
         
         return (
             <div>
@@ -158,7 +178,7 @@ class Comicsy extends Component {
                                 <p>By {curcatcomics.owner.username}</p>
                                 {/* </NavLink> */}
                                 <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button><br></br>
-                                <button onClick={()=>{this.handleChooseMagazines(curcatcomics)}}>Choose to add to Favorites</button>
+                                <button onClick={()=>{this.handleChooseMagazines(curcatcomics.id)}}>Choose to add to Favorites</button>
                             </div>
                         ))
                     }                    
@@ -194,6 +214,5 @@ export default connect(mapStateToProps,
         addToFavorites,
         getFavorites,
         chooseFavorites,
-        addToFavorites,
         search
     })(Comicsy);
