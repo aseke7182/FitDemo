@@ -82,7 +82,7 @@ class Comicsy extends Component {
                                 {/* <NavLink to={this.props.location.pathname + '/comments'} > */}
                                 <p>{curcatcomics.name}</p>
                                 <br></br>
-                                <img src={curcatcomics.image.url} alt={curcatcomics.image} ></img>
+                                <img src={curcatcomics.image} alt={curcatcomics.image} ></img>
                                 <br></br>
                                 <p className="price">₸{ curcatcomics.price}</p>
                                 <br></br>

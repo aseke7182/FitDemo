@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from api.models import Catalog, Developer, Check, Magazine, Comment, Message
+from api.models import Catalog, Developer, Check, Magazine, Comment, Message, Favorites
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -58,6 +58,22 @@ class CheckSerializer(serializers.ModelSerializer):
             cost += i.price
         instance = Check.objects.create(cost=cost, **validated_data)
         instance.magazines.set(foods)
+        return instance
+
+
+class FavoritesSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    owner = UserSerializer(read_only=True)
+    magazines = MagazineSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Favorites
+        fields = ('id', 'owner', 'magazines', 'ma')
+    
+    def create(self, validated_data):
+        foodsI = validated_data.pop('ma')
+        instance = Favorites.objects.create(**validated_data)
+        instance.magazines.set(foodsI)
         return instance
 
 

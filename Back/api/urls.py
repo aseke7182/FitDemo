@@ -16,6 +16,7 @@ urlpatterns = [
                   path('developers/', views.Developers.as_view()),
                   path('developers/<int:pk>/', views.DeveloperInfo.as_view()),
                   path('basket/', views.BasketList.as_view()),
+                  path('favorites/', views.FavoritesList.as_view()),
                   path('userfoods/<int:pk>/', views.UsersFoodList.as_view()),
                   path('allmagazines/', views.AllMagazinesList.as_view()),
                   path('send/', views.Message.as_view()),

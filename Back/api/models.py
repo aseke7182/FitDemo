@@ -24,6 +24,12 @@ class Check(models.Model):
     ma = models.ManyToManyField(Magazine)
 
 
+class Favorites(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="senderI")
+    magazines = models.ManyToManyField(Magazine, related_name="foodI")
+    ma = models.ManyToManyField(Magazine)
+
+
 class Developer(models.Model):
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=200)

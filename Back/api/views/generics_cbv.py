@@ -60,6 +60,19 @@ class BasketList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
+class FavoritesList(generics.ListCreateAPIView):
+    serializer_class = FavoritesSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        favorite = Favorites.objects.all()
+        queryset = favorite.filter(owner=self.request.user)
+        return queryset
+    
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
 class UsersFoodList(generics.ListCreateAPIView):
     serializer_class = MagazineSerializer
     permission_classes = (IsAuthenticated,)

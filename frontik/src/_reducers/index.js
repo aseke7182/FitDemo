@@ -5,6 +5,7 @@ import commentsReducer from './comments.reducer';
 import authReducer from "./auth.reducer";
 import basketReducer from './basket.reducer';
 
+
 const appReducer = combineReducers({
     catalog: catalogsReducer,
     comics: comicsyReducer,
