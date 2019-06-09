@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './_reducers';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import "./index.css";
 
 import App from "./_app/App";

@@ -39,16 +39,21 @@ class Comments extends Component {
 
 		return (
 			<div>
-				<div>
-					Comments:
+				<div className="comments__title">
+					<p>Comments Section:</p>
 				</div>
 				<div className="Comments__header">
 					{currentComics && currentCatalog?(<div>
-						<label>You can share your opinion and feeling about this comics with others. Just leave a review!</label><br></br>
-						<form onSubmit={this.handleSubmit}>
-							<input type="text" placeholder="Leave review" id="text" onChange={this.handleOnChange} value={this.state.text}></input><br/>
-							<input type="text" placeholder="Raiting" id="rating" onChange={this.handleOnChange} value={this.state.rating}></input>
-							<button className="CommentAdd__button" onClick={()=>{this.handleAddComment(currentCatalog.id,currentComics.id)}}>Add Comment</button>
+						<label className="please__choose">You can share your opinion and feelings about this comics with others. Just leave a review!</label><br></br>
+						<form onSubmit={this.handleSubmit}>		
+							<div className="submit__wrapper">
+								<textarea className="comment__text" placeholder="Leave review" id="text" onChange={this.handleOnChange} value={this.state.text}></textarea>
+								<div className="rating__wrapper">
+									<label>Raiting </label>
+									<select className="raiting" id="rating" onChange={this.handleOnChange} value={this.state.rating}><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+								</div>
+								<button className="CommentAdd__button btn btn-primary" onClick={()=>{this.handleAddComment(currentCatalog.id,currentComics.id)}}>Add Comment</button>
+							</div>		
 						</form>
 					</div>):(
 						<div></div>
@@ -62,17 +67,19 @@ class Comments extends Component {
 							<div
 								key={curcomcomments.id}
 							>
-								<h2>{curcomcomments.text}</h2>
-								<p>{curcomcomments.rating}</p>
+								<div className="response__wrapper">
+									<h2 className="response__message">{curcomcomments.text}</h2>
+									<p className="response__raiting">Raiting: {curcomcomments.rating}</p>
+								</div>
 							</div>
 						))
 					}
 				</div>
 			): (
 				<div>{currentComics && currentCatalog? (
-					<div>No Comments</div>
+					<div className="downward ">No Comments</div>
 				):(
-					<div>Choose comics to see comments</div>
+					<div className="please__choose">Please choose appropriate comics to see comments</div>
 				)}
 				</div>
 			)} 

@@ -4,3 +4,55 @@
 .Comments__header{
     margin: 3% 0;
 }
+.comments__title{
+    margin-top: 4%;
+    font-size: 30px;
+    margin-left: 5%;
+}
+.currentComicsComments:last-child{
+    margin-bottom: 10%;
+}
+.downward{
+    margin-bottom: 10%;
+}
+.please__choose{
+    font-size: 25px;
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+.comment__text{
+    margin-left: 5%; 
+    padding: 1% 0 0 1%; 
+    height: 300px;
+    width: 600px;
+}
+.rating__wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}
+.submit__wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}
+.response__wrapper{
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1% 0% 1% 2%; 
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+    background: rgb(220, 220, 220);
+}
+.CommentAdd__button{
+    height: 100px;
+}
+.response__message{
+    font-size: 30px;
+}
+.response__raiting{
+    padding-left: 3%; 
+}
+.raiting{
+    height: 20px;
+}

@@ -35,30 +35,38 @@ class Basket extends Component {
 
         return (
             <div>
-                <div>
-                    Basket Items:
-                </div>
+                <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"></link>
+                
                 {basketItems && basketItems.length ? (
                 <div className="BasketItems">
+                {
+                    <div className="title">
+                        <p>Items in Basket</p>
+                    </div>
+                }
                     {
                         basketItems.map((basketitemi, index) => (
                             <div
                                 key={basketitemi.id}
                             >
-                                <p>{basketitemi.id}</p>
-                                <p>{basketitemi.name}</p>
-                                <p>{basketitemi.price}</p>
-                                <button onClick={()=>{this.handleRemoveComics(basketitemi)}}>Remove From Basket</button>
+                                <div className="BasketItems__params">
+                                    <div className="Basket__items__insides">
+                                        <label><p className="move">Comics Name</p> <p className="insides move">{basketitemi.name}</p></label>
+                                        <label><p className="move">Price</p><p className="insides move">₸ {basketitemi.price}</p></label>
+                                        <button className="remove__button" onClick={()=>{this.handleRemoveComics(basketitemi)}}>Remove From Basket</button>
+                                    </div> 
+                                </div>
+                                
                             </div>
                         ))
                     }{
-                        <button onClick={()=>{this.handleBuyComics('ok', basketItems)}}>Buy Comics</button>
+                        <button className="buy__button" onClick={()=>{this.handleBuyComics('ok', basketItems)}}>Buy Comics</button>
                     }
                 </div>
                 
                 
             ): (
-                <div>Basket Is Empty</div>
+                <div className="EmptyBasket">Basket Is Empty</div>
             )}
             </div>
         );

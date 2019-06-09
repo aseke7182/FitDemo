@@ -1,6 +1,11 @@
 header {
     z-index: 20;
 }
+
+.app__header{
+    height: 5%;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -62,7 +67,7 @@ header nav ul li ul{
     position: absolute;
     background: #000;
     z-index: 20;
-
+    color: white;
 }
 header nav ul li:hover ul{
     display: block;
@@ -113,8 +118,34 @@ header nav input{
     justify-content: space-evenly;
 }
 
+@media(min-width: 2560px){
+    header nav ul li a{
+        font-size: 40px;
+    }
+}
 
-@media(max-width: 768px){
+@media(max-width: 2560px){
+    header nav ul li a{
+        font-size: 28px;
+    }
+}
+
+@media(max-width: 1200px){
+    header nav ul li a{
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 1024px){
+    header nav ul li a{
+        font-size: 15px;
+    }
+}
+
+@media(max-width: 767px){
+    header nav ul li a ul li a{
+        font-size: 10px;
+    }
     .mobile-header{
         display: flex;
     }
@@ -129,3 +160,5 @@ header nav input{
         line-height: 60px;
     }
 }
+
+/* @media(max-width:) */

@@ -44,7 +44,7 @@ export class Header extends Component {
 
         return (
 
-            <header>
+            <header className="app__header">
             	<nav className="normal-header group_of_elements">
             		<ul>
             			<li className="header_elements"><NavLink to="">Main Menu</NavLink></li>

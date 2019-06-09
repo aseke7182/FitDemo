@@ -34,10 +34,13 @@ class Catalogs extends Component {
                                 className={`Catalogs__catalog ${ currentCatalog && catalog.id === currentCatalog.id ? 'Catalog__catalog--active': ''}`}
                                 onClick={()=> {this.handleCatalogClick(catalog, index)}}
                             >
-                                <NavLink to={'/catalogs/' + catalog.id } > 
-                                    {catalog.name} 
-                                    <img className="Catalog__picture" src={catalog.image} alt="here shoul be img" />
-                                </NavLink>  
+                                <div className="wrapper">
+                                    <div className="temp"></div>
+                                    <NavLink className="link" to={'/catalogs/' + catalog.id } >  
+                                        <p className="temp">{catalog.name}</p>
+                                        <img className="Catalog__picture" src={catalog.image} alt="here shoul be img" />
+                                    </NavLink>  
+                                </div>
                             </div>
                         ))
                     }
