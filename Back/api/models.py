@@ -11,8 +11,9 @@ class Magazine(models.Model):
     name = models.CharField(max_length=200)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     catalog = models.ForeignKey(Catalog, on_delete=models.PROTECT, related_name='foods')
-    image = models.CharField(max_length=500, default="1")
+    # image = models.CharField(max_length=500, default="1")
     price = models.IntegerField(default=500)
+    image = models.ImageField(upload_to="images", null=True, default=None)
 
 
 class Check(models.Model):
