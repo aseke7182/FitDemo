@@ -1,8 +1,10 @@
-from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from django.shortcuts import get_object_or_404
 from api.serializers import *
 from api.models import *
+from api.filters import MagazineFilter
 
 
 class CatalogList(generics.ListCreateAPIView):
@@ -26,6 +28,11 @@ class AllMagazinesList(generics.ListAPIView):
 class MagazineList(generics.ListCreateAPIView):
     serializer_class = MagazineSerializer
     permission_classes = (AllowAny,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
+    filter_class = MagazineFilter
+    search_fields = ('name',)
+    ordering_fields = ('name', 'date', 'price',)
+    ordering = ('name',)
 
     def get_queryset(self):
         catalog = get_object_or_404(Catalog, id=self.kwargs.get('pk'))
@@ -68,7 +75,7 @@ class FavoritesList(generics.ListCreateAPIView):
         favorite = Favorites.objects.all()
         queryset = favorite.filter(owner=self.request.user)
         return queryset
-    
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 

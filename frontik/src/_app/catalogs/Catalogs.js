@@ -21,7 +21,7 @@ class Catalogs extends Component {
     }
 
     render() {
-        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy, currentComics}, getComicsy, setActiveComics, commentsData: { currentComicsComments }, getComments } = this.props;
+        const { catalogsData: {catalogs, currentCatalog} } = this.props;
 
         return (
 
