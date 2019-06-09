@@ -1,7 +1,6 @@
 from django.urls import path
 from api import views
-from django.conf.urls.static import static
-from django.conf import settings
+
 
 urlpatterns = [
                   path('catalogs/', views.CatalogList.as_view()),
