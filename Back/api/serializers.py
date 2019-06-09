@@ -30,10 +30,11 @@ class CatalogSerializer(serializers.ModelSerializer):
 class MagazineSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     owner = UserSerializer(read_only=True)
+    date = serializers.DateTimeField(required=False)
 
     class Meta:
         model = Magazine
-        fields = ('id', 'name', 'owner', 'catalog', 'price', 'image')
+        fields = ('id', 'name', 'owner', 'catalog', 'price', 'image', 'date')
 
     def create(self, validated_data):
         catalog = validated_data.pop('catalog')

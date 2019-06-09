@@ -3,11 +3,16 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import django.utils.timezone as t
 
 
 class Catalog(models.Model):
     name = models.CharField(max_length=200)
     image = models.CharField(max_length=500, default="1")
+
+
+def todayttime():
+    return t.now() + t.timedelta(hours=6)
 
 
 class Magazine(models.Model):
@@ -17,6 +22,7 @@ class Magazine(models.Model):
     # image = models.CharField(max_length=500, default="1")
     price = models.IntegerField(default=500)
     image = models.ImageField(upload_to="images", null=True, default=None)
+    date = models.DateTimeField(default=todayttime)
 
 
 class Check(models.Model):
