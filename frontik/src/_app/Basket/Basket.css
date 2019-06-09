@@ -1,0 +1,134 @@
+.BasketItems:last-child{
+    margin-bottom: 5%;
+}
+
+.BasketItems__params{
+    margin-top: 10px; 
+}
+
+.move{
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.title{
+    font: 'Oswald', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    margin: 1% 0; 
+}
+
+.EmptyBasket{
+    font: 'Oswald', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 1%;
+    color: red;
+}
+
+.BasketItems__params{
+    padding-top: 1%;
+    text-align: center;
+    font: 'Oswald', sans-serif;
+    color: #ff9d00e5;   
+    border: rgb(42, 214, 42) dashed 3px;
+}
+
+.Basket__items__insides{
+    display: flex;
+    justify-content: center;
+}
+
+.remove__button{
+    padding: 1% 1%;
+    color: white;
+    background: red;
+    border: black 2px solid;
+    border-radius: 10px;
+    margin-bottom: 1%; 
+}
+
+.insides{
+    color: rgb(255, 176, 189);
+    font-size: 20px;
+}
+
+.buy__button{
+    font: 'Oswald', sans-serif;
+    font-size: 30px;
+    padding: 1% 1%;
+    margin:1% 40%;
+    color: whitesmoke;
+    background: green;
+    border: 6px ridge rgb(0, 162, 255);
+    border-radius: 30px;
+}
+
+@media(max-width: 1440px){
+    .buy__button{
+        font-size: 20px;
+        border-radius: 20px;
+        margin: 1% 40% 15% 43%;
+    }
+}
+@media(max-width: 436px){
+    .buy__button{
+        font-size: 15px;
+        border-radius: 5px; 
+        margin: 1% 40% 25%;
+    }
+}
+
+@media(max-width: 350px){
+    .buy__button{
+        font-size: 10px;
+        border-radius: 3px;
+        margin: 1% 40% 25%;
+    }
+    .remove__button{
+        font-size: 10px;
+    }
+    .move{
+        font-size: 12px;
+    }
+}
+
+@media(min-width: 1440px) and (max-width: 2560px){
+    .buy__button{
+        font-size: 40px;
+        border-radius: 3px;
+        margin: 1% 40% 28% 43%;
+    }
+    .title{
+        font-size: 50px;
+    }
+    .EmptyBasket{
+        font-size: 50px;
+    }
+    .move{
+        font-size: 35px;
+    }
+    .remove__button{
+        font-size: 30px;
+    }
+}
+
+@media(min-width: 2560px){
+    .buy__button{
+        font-size: 60px;
+        border-radius: 30px;
+        margin: 1% 40% 28% 43%;
+    }
+    .title{
+        font-size: 60px;
+    }
+    .EmptyBasket{
+        font-size: 60px;
+    }
+    .move{
+        font-size: 50px;
+    }
+    .remove__button{
+        font-size: 35px;
+    }
+}

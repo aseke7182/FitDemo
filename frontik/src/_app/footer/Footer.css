@@ -33,3 +33,31 @@
 .footer .tgg {
     margin-left: 5%;
 }
+
+@media(max-width: 460px){
+    .footer{
+        font-size: 10px;
+    }
+}
+@media(max-width: 365px){
+    .footer{
+        font-size: 14px;
+    }
+}
+
+@media(min-width: 768px) and (max-width:1440px){
+    .footer{
+        font-size: 20px;
+    }
+}
+
+@media(min-width: 1440px) and (max-width: 2560px){
+    .footer{
+        font-size: 30px;
+    }
+}
+@media(min-width: 2560px){
+    .footer{
+        font-size: 40px;
+    }
+}
