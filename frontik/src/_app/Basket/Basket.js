@@ -31,7 +31,7 @@ class Basket extends Component {
 
     render() {
 
-        const { basketData: {basketItems, orderDetail}, removeComics, createBasket} = this.props;
+        const { basketData: {basketItems}} = this.props;
 
         return (
             <div>

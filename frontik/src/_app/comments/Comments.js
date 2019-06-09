@@ -35,7 +35,7 @@ class Comments extends Component {
 
 	render() {
 
-		const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy, currentComics}, getComicsy, setActiveComics, commentsData: { currentComicsComments }, getComments, addComment } = this.props;
+		const { catalogsData: {currentCatalog}, comicsyData: {currentComics}, commentsData: { currentComicsComments } } = this.props;
 
 		return (
 			<div>

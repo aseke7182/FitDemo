@@ -3,7 +3,7 @@ import Comments from '../comments/Comments';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
-import { getComicsy, setActiveComics, createComicss } from '../../_actions/comicsy.action';
+import { getComicsy, setActiveComics, createComicss, search } from '../../_actions/comicsy.action';
 import { getComments } from '../../_actions/comments.action';
 import { addToBasket } from '../../_actions/basket.action';
 import { addToFavorites, getFavorites, chooseFavorites } from '../../_actions/favorite.action';
@@ -15,12 +15,19 @@ class Comicsy extends Component {
         name: '',
         price: 0,
         image: null,
+        search: '',
+        orderby: 'name',
+        asc: false,
+        min_price: '',
+        max_price: ''
         // favoriteId: this.props.favoritesData.favorites.id
     }
 
     componentDidMount(){
         // this.props.getCatalogs();
         this.props.getFavorites()
+        const {getComicsy} = this.props;
+        getComicsy(this.props.match.params.comics_id);
         // console.log(this.props.favoritesData.favorites[0]);        
     }
 
@@ -80,6 +87,29 @@ class Comicsy extends Component {
         createComicss(form_data, this.props.catalogsData.currentCatalog.id);
     }
 
+    handleSearch = (e) => {
+        if(this.state.min_price > this.state.max_price){
+            let a = this.state.min_price;
+            this.setState({
+                min_price: this.state.max_price,
+                max_price: a
+            })
+        }
+        e.preventDefault();
+        const {search} = this.props;
+        let ser = [
+            this.state.search,this.state.orderby,Math.min(this.state.min_price,this.state.max_price),Math.max(this.state.min_price,this.state.max_price)
+        ]
+        if(this.state.asc) ser[1] = '-' + ser[1];
+        search(ser,this.props.catalogsData.currentCatalog.id );
+    }
+
+    handleChangeAsc = (e) => {
+        this.setState({
+            asc : !this.state.asc
+        })
+    }
+
     render() {
         const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments, addToBasket, basketData:{ basketItems}, favoritesData: {favorites, chosenMagazines} } = this.props;
         
@@ -95,7 +125,18 @@ class Comicsy extends Component {
                         <input type="submit"/>
                     </form>
                 </div>
-                
+                <form onSubmit={this.handleSearch} >
+                    <input type="text" id="search" placeholder="search by name" onChange={this.handleChange} value={this.state.search} />
+                    <select id="orderby" onChange={this.handleChange} value={this.setState.orderby} >
+                        <option value="name">name</option>
+                        <option value="date">date</option>
+                        <option value="price">price</option>
+                    </select>
+                    <input type="checkbox" checked={this.state.asc} onChange={this.handleChangeAsc}/>
+                    <input type="text" id="min_price" placeholder="minimum price" onChange={this.handleChange} value={this.state.min_price}/>
+                    <input type="text" id="max_price" placeholder="maximum price" onChange={this.handleChange} value={this.state.max_price}/>
+                    <input type="submit" />
+                </form>
                 { currentCatalogComicsy && currentCatalogComicsy.length ? (
                 <div className="CurrentCatalogComics">
                     
@@ -153,5 +194,6 @@ export default connect(mapStateToProps,
         addToFavorites,
         getFavorites,
         chooseFavorites,
-        addToFavorites
+        addToFavorites,
+        search
     })(Comicsy);

@@ -1,4 +1,4 @@
-import { getComicsByCatalogId, createComics } from '../_services/comicsy';
+import { getComicsByCatalogId, createComics, searchComics } from '../_services/comicsy';
 
 export const GET_COMICS_BY_CATALOG_ID = 'GET_COMICS_BY_CATALOG_ID';
 export const SET_ACTIVE_COMICS = 'SET_ACTIVE_COMICS';
@@ -38,6 +38,17 @@ export const createComicss = (data,catalogID) => dispatch => {
             })
             window.location.href = "http://localhost:3000/catalogs/"+catalogID+"/";
         })
+    }).catch(error => {
+        alert(error);
+    })
+}
+
+export const search = (name,id) => dispatch => {
+    searchComics(name,id).then(res => {
+        dispatch({
+            type:GET_COMICS_BY_CATALOG_ID,
+            payload: res.data
+        });
     }).catch(error => {
         alert(error);
     })
