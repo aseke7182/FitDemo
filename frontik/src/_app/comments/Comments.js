@@ -43,7 +43,7 @@ class Comments extends Component {
 					Comments:
 				</div>
 				<div className="Comments__header">
-					{currentComics?(<div>
+					{currentComics && currentCatalog?(<div>
 						<label>You can share your opinion and feeling about this comics with others. Just leave a review!</label><br></br>
 						<form onSubmit={this.handleSubmit}>
 							<input type="text" placeholder="Leave review" id="text" onChange={this.handleOnChange} value={this.state.text}></input><br/>
@@ -55,7 +55,7 @@ class Comments extends Component {
 					)}
 					
 				</div>
-				{ currentComicsComments && currentComicsComments.length ? (
+				{ currentCatalog&& currentComics&& currentComicsComments && currentComicsComments.length ? (
 				<div className="currentComicsComments">
 					{
 						currentComicsComments.map((curcomcomments, index) => (
@@ -69,7 +69,7 @@ class Comments extends Component {
 					}
 				</div>
 			): (
-				<div>{currentComics? (
+				<div>{currentComics && currentCatalog? (
 					<div>No Comments</div>
 				):(
 					<div>Choose comics to see comments</div>

@@ -3,7 +3,7 @@ import Comments from '../comments/Comments';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
-import { getComicsy, setActiveComics,createComicss } from '../../_actions/comicsy.action';
+import { getComicsy, setActiveComics, createComicss } from '../../_actions/comicsy.action';
 import { getComments } from '../../_actions/comments.action';
 import { addToBasket } from '../../_actions/basket.action';
 import './Comicsy.css';
@@ -15,8 +15,15 @@ class Comicsy extends Component {
         price: 0,
         image: null,
     }
+
     componentDidMount(){
         // this.props.getCatalogs();
+    }
+
+    handleClickGoBack(){
+        console.log(this.props);
+        this.props.catalogsData.currentCatalog = false;
+        this.props.comicsyData.currentComics = false; 
     }
 
     handleComicsyClick = (catalogId, comics, index) => {
@@ -50,7 +57,7 @@ class Comicsy extends Component {
         form_data.append('name', this.state.name);
         form_data.append('price', this.state.price);
         form_data.append('catalog',this.props.match.params.comics_id);
-        createComicss(form_data,6);
+        createComicss(form_data, this.props.catalogsData.currentCatalog.id);
     }
 
     render() {
@@ -60,7 +67,7 @@ class Comicsy extends Component {
             <div>
                 <div>
                     Comics List:
-                    <NavLink to="/catalogs">Go Back</NavLink>
+                    <NavLink to="/catalogs" onClick={()=>{this.handleClickGoBack()}}>Go Back</NavLink>
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" id="name" placeholder="name" onChange={this.handleChange} value={this.state.name} required />
                         <input type="text" id="price" placeholder="Price" onChange={this.handleChange} value={this.state.price} required />
@@ -84,7 +91,7 @@ class Comicsy extends Component {
                                 <br></br>
                                 <img src={curcatcomics.image} alt={curcatcomics.image} width="200px" ></img>
                                 <br></br>
-                                <p className="price">₸{ curcatcomics.price}</p>
+                                <p className="price">₸ {curcatcomics.price}</p>
                                 <br></br>
                                 {/* </NavLink> */}
                                 <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button>

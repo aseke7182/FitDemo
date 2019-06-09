@@ -1,9 +1,10 @@
 import smtplib
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from django.core.mail import send_mail
 from django.http import Http404
 from rest_framework.views import APIView
-from api.models import Developer
-from api.serializers import DeveloperSerializer,MessageSerializer
+from api.models import Developer, Favorites
+from api.serializers import DeveloperSerializer,MessageSerializer, FavoritesSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -46,6 +47,11 @@ class DeveloperInfo(APIView):
         developers = self.get_developers(pk)
         developers.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# class FavoritesDetail(APIView):
+#     permission_classes = (IsAuthenticated,)
+#     def get 
 
 
 class Message(APIView):

@@ -26,10 +26,18 @@ export const setActiveComics = index => dispatch => {
 
 export const createComicss = (data,catalogID) => dispatch => {
     createComics(data,catalogID).then(res => {
-        dispatch({
-            type: CREATE_COMICS,
-            payload: res.payload
-        });
+        // dispatch({
+        //     type: CREATE_COMICS,
+        //     payload: res.payload
+        // });
+        getComicsByCatalogId(catalogID)
+        .then(response =>{
+            dispatch({
+                type: CREATE_COMICS,
+                payload: response.payload
+            })
+            window.location.href = "http://localhost:3000/catalogs/"+catalogID+"/";
+        })
     }).catch(error => {
         alert(error);
     })

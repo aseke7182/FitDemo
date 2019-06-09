@@ -75,6 +75,12 @@ class FavoritesSerializer(serializers.ModelSerializer):
         instance = Favorites.objects.create(**validated_data)
         instance.magazines.set(foodsI)
         return instance
+    
+    def update(self, instance, validated_data):
+        foodsI = validated_data.pop('ma')
+        instance.magazines.set(foodsI)
+        instance.save()
+        return instance
 
 
 class DeveloperSerializer(serializers.ModelSerializer):

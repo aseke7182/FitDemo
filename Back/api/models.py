@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Catalog(models.Model):
@@ -25,9 +28,18 @@ class Check(models.Model):
 
 
 class Favorites(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="senderI")
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
     magazines = models.ManyToManyField(Magazine, related_name="foodI")
-    ma = models.ManyToManyField(Magazine)
+    ma = models.ManyToManyField(Magazine, default=None, null=True, blank=True)
+
+@receiver(post_save, sender=User)
+def create_favorites(sender, instance, created, **kwargs):
+    if created:
+        Favorites.objects.create(owner=instance)
+
+@receiver(post_save, sender=User)
+def save_favorites(sender, instance, **kwargs):
+    instance.favorites.save()
 
 
 class Developer(models.Model):

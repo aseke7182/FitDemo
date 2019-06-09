@@ -1,6 +1,8 @@
 import { GET_COMICS_BY_CATALOG_ID, SET_ACTIVE_COMICS, CREATE_COMICS } from '../_actions/comicsy.action';
 
-const initialState = {}
+const initialState = {
+    // currentCatalogComicsy: []
+}
 
 export default function(state = initialState, action){
     switch(action.type) {
@@ -19,7 +21,7 @@ export default function(state = initialState, action){
             // let comics =  [...state.currentCatalogComicsy,action.payload];
             return{
                 ...state,
-                // currentCatalogComicsy: comics
+                currentCatalogComicsy: action.payload
             }
         default:
             return state;

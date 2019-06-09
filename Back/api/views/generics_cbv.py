@@ -73,6 +73,12 @@ class FavoritesList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
+class FavoritesInfo(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = FavoritesSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset = Favorites.objects.all()
+
+
 class UsersFoodList(generics.ListCreateAPIView):
     serializer_class = MagazineSerializer
     permission_classes = (IsAuthenticated,)

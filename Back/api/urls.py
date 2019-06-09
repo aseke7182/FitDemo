@@ -1,6 +1,7 @@
 from django.urls import path
 from api import views
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
                   path('catalogs/', views.CatalogList.as_view()),
@@ -16,6 +17,7 @@ urlpatterns = [
                   path('developers/<int:pk>/', views.DeveloperInfo.as_view()),
                   path('basket/', views.BasketList.as_view()),
                   path('favorites/', views.FavoritesList.as_view()),
+                  path('favorites/<int:pk>/', views.FavoritesInfo.as_view()),
                   path('userfoods/<int:pk>/', views.UsersFoodList.as_view()),
                   path('allmagazines/', views.AllMagazinesList.as_view()),
                   path('send/', views.Message.as_view()),
