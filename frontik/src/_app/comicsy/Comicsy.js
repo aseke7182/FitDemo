@@ -6,6 +6,7 @@ import { getCatalogs, setActiveCatalog } from '../../_actions/catalog.action';
 import { getComicsy, setActiveComics, createComicss } from '../../_actions/comicsy.action';
 import { getComments } from '../../_actions/comments.action';
 import { addToBasket } from '../../_actions/basket.action';
+import { addToFavorites, getFavorites, chooseFavorites } from '../../_actions/favorite.action';
 import './Comicsy.css';
 
 class Comicsy extends Component {
@@ -14,14 +15,17 @@ class Comicsy extends Component {
         name: '',
         price: 0,
         image: null,
+        // favoriteId: this.props.favoritesData.favorites.id
     }
 
     componentDidMount(){
         // this.props.getCatalogs();
+        this.props.getFavorites()
+        // console.log(this.props.favoritesData.favorites[0]);        
     }
 
     handleClickGoBack(){
-        console.log(this.props);
+        // console.log(this.props);
         this.props.catalogsData.currentCatalog = false;
         this.props.comicsyData.currentComics = false; 
     }
@@ -35,6 +39,22 @@ class Comicsy extends Component {
     handleAddToBasket = (comics) => {
         const { addToBasket } = this.props;
         addToBasket(comics);
+    }
+
+    handleAddToFavorites = (favoriteId, massiv) => {
+        const { addToFavorites } = this.props;
+        let ma= []
+        for(let i = 0; i < massiv.length; i++){
+            ma.push(massiv[i]);
+        }
+        favoriteId = favoriteId["0"].id
+        console.log(ma)
+        addToFavorites(favoriteId, ma);
+    }
+
+    handleChooseMagazines = (comics) => {
+        const { chooseFavorites } =this.props;
+        chooseFavorites(comics);
     }
 
     handleChange = (e) => {
@@ -61,7 +81,7 @@ class Comicsy extends Component {
     }
 
     render() {
-        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments, addToBasket, basketData:{ basketItems} } = this.props;
+        const { catalogsData: {catalogs, currentCatalog}, setActiveCatalog, comicsyData: {currentCatalogComicsy}, getComicsy, setActiveComics, getComments, addToBasket, basketData:{ basketItems}, favoritesData: {favorites, chosenMagazines} } = this.props;
         
         return (
             <div>
@@ -87,7 +107,7 @@ class Comicsy extends Component {
                                 onClick={()=>{this.handleComicsyClick(curcatcomics.catalog, curcatcomics, index)}}
                             >
                                 {/* <NavLink to={this.props.location.pathname + '/comments'} > */}
-                                {console.log(curcatcomics)}
+                                {/* {console.log(curcatcomics)} */}
                                 <p>{curcatcomics.name}</p>
                                 <br></br>
                                 <img src={curcatcomics.image} alt={curcatcomics.image} width="200px" ></img>
@@ -96,7 +116,8 @@ class Comicsy extends Component {
                                 <p>Added: at {curcatcomics.date}</p>
                                 <p>By {curcatcomics.owner.username}</p>
                                 {/* </NavLink> */}
-                                <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button>
+                                <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button><br></br>
+                                <button onClick={()=>{this.handleChooseMagazines(curcatcomics)}}>Choose to add to Favorites</button>
                             </div>
                         ))
                     }                    
@@ -104,6 +125,7 @@ class Comicsy extends Component {
                 ): (
                 <div>No Comics for this Catalog</div>
             )}
+            <button onClick={()=>{this.handleAddToFavorites(this.props.favoritesData.favorites, chosenMagazines)}}>Move To Favorites</button>
             <Comments/>
             </div>
         );
@@ -115,6 +137,7 @@ function mapStateToProps(state){
         catalogsData: state.catalog,
         comicsyData: state.comics,
         basketData: state.basket,
+        favoritesData: state.izbrannye,
     }
 }
 
@@ -126,5 +149,9 @@ export default connect(mapStateToProps,
         setActiveComics,
         getComments,
         addToBasket,
-        createComicss
+        createComicss,
+        addToFavorites,
+        getFavorites,
+        chooseFavorites,
+        addToFavorites
     })(Comicsy);

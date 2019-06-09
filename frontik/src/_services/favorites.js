@@ -11,3 +11,9 @@ const http = axios.create({
 export function getAllUserFavorites(){
     return http.get('favorites/');
 }
+
+export function updateFavorite(favoriteId, ma){
+    return http.put('favorites/'+favoriteId+'/' ,{
+        ma: ma
+    })
+}

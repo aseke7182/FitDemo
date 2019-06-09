@@ -17,6 +17,7 @@ export class Header extends Component {
             <div>
                 <li className="header_elements"><NavLink to="">{username}</NavLink></li>
                 <li className="header_elements"><NavLink to="/basket">Basket</NavLink></li>
+                <li className="header_elements"><NavLink to="/favorites">Favorites</NavLink></li>
                 <li className="header_elements" onClick={this.logout} ><NavLink to="">Logout</NavLink></li>
             </div>
         ) : (
@@ -25,16 +26,46 @@ export class Header extends Component {
                 <li className="header_elements"><NavLink to="/auth">Login</NavLink></li>
             </div>
         );
+
+        const mobilefiles = logged===true ? (
+            <div>
+                <li><NavLink to="">{username}</NavLink></li>
+                <li><NavLink to="/basket">Basket</NavLink></li>
+                <li><NavLink to="/favorites">Favorites</NavLink></li>
+                <li onClick={this.logout} ><NavLink to="">Logout</NavLink></li>
+            </div>
+        ):(
+            <div>
+                <li><NavLink to="/auth">Login</NavLink></li>
+                <li><NavLink to="/register">Sign Up</NavLink></li>
+            </div>
+            
+        );
+
         return (
 
             <header>
-            	<nav className="group_of_elements">
+            	<nav className="normal-header group_of_elements">
             		<ul>
             			<li className="header_elements"><NavLink to="">Main Menu</NavLink></li>
             			<li className="header_elements"><NavLink to="/catalogs">Catalogs</NavLink></li>
                         {files}
             		</ul>
             	</nav>
+                <nav className="mobileNavigation">
+                    <div className="mobile-header group_of_elements">
+                        <NavLink to=""><img src="https://ui-ex.com/images250_/transparent-logos-team-1.png" className="mobile-logo"></img></NavLink>
+                        <ul>
+                            <li className="header_elements mobile-menu-writing"><a>Menu</a>
+                                <ul>
+                                    <li><NavLink to="/catalogs">Catalogs</NavLink></li>
+                                    {mobilefiles}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </nav>
             </header>
         )
     }

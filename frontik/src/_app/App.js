@@ -10,6 +10,7 @@ import Footer from './footer/Footer';
 import Mainpage from './Mainpage/mainpage';
 import Register from './register/register';
 import Basket from './Basket/Basket';
+import Favorites from './favorites/Favorites';
 
 class App extends Component{
   render(){
@@ -19,7 +20,7 @@ class App extends Component{
           <Header/>
           <Switch>
           <Route exact path='/' component= {Mainpage}/>
-          {/* <Route path="/catalogs/:comics_id/comments" component = { Comments}/> */}
+          <Route path="/favorites" component = { Favorites }/>
           <Route path="/catalogs/:comics_id" component = { Comicsy }/>
           <Route path="/catalogs" component = { Catalogs}/>
           <Route path="/auth" component = {Auth}/>
