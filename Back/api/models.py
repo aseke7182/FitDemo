@@ -1,10 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+import django.utils.timezone as t
 
 
 class Catalog(models.Model):
     name = models.CharField(max_length=200)
     image = models.CharField(max_length=500, default="1")
+
+
+def todayttime():
+    return t.now() + t.timedelta(hours=6)
 
 
 class Magazine(models.Model):
@@ -14,6 +19,7 @@ class Magazine(models.Model):
     # image = models.CharField(max_length=500, default="1")
     price = models.IntegerField(default=500)
     image = models.ImageField(upload_to="images", null=True, default=None)
+    date = models.DateTimeField(default=todayttime)
 
 
 class Check(models.Model):

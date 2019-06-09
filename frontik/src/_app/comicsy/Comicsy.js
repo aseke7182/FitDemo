@@ -80,12 +80,14 @@ class Comicsy extends Component {
                                 onClick={()=>{this.handleComicsyClick(curcatcomics.catalog, curcatcomics, index)}}
                             >
                                 {/* <NavLink to={this.props.location.pathname + '/comments'} > */}
+                                {console.log(curcatcomics)}
                                 <p>{curcatcomics.name}</p>
                                 <br></br>
                                 <img src={curcatcomics.image} alt={curcatcomics.image} width="200px" ></img>
                                 <br></br>
                                 <p className="price">₸{ curcatcomics.price}</p>
-                                <br></br>
+                                <p>Added: at {curcatcomics.date}</p>
+                                <p>By {curcatcomics.owner.username}</p>
                                 {/* </NavLink> */}
                                 <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button>
                             </div>
