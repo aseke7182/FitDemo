@@ -16,7 +16,7 @@ class App extends Component{
   render(){
     return(
       <BrowserRouter>
-        <div>
+        <div className="App"  >
           <Header/>
           <Switch>
           <Route exact path='/' component= {Mainpage}/>

@@ -162,7 +162,7 @@ class Comicsy extends Component {
                         </select>
                         <input className="search__reverse__ordering" type="checkbox" checked={this.state.asc} onChange={this.handleChangeAsc}/>
                         <input className="search__name" type="text" id="min_price" placeholder="minimum price" onChange={this.handleChange} value={this.state.min_price}/>
-                        <input className="search__name" type="text" id="max_price" placeholder="maximum price" onChange={this.handleChange} value={this.state.max_price}/>
+                        <input className="search__name" type="text" id="max_price" placeholder="maximum price" onChange={this.handleChange} required value={this.state.max_price}/>
                         <input className="btn btn-warning" type="submit" />
                     </div>    
                 </form>
