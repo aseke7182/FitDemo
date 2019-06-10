@@ -1,5 +1,11 @@
 header {
     z-index: 20;
+    display: flex;
+    /* padding-right: 500px; */
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
+    /* position: fixed; */
+    /* width: 100%; */
 }
 
 .app__header{
@@ -116,6 +122,11 @@ header nav input{
 .mobile-header{
     display: none;
     justify-content: space-evenly;
+}
+
+.header_down:hover{
+    padding-right: 40px;
+    display: block;
 }
 
 @media(min-width: 2560px){

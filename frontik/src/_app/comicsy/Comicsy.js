@@ -154,7 +154,7 @@ class Comicsy extends Component {
                     </select>
                     <input type="checkbox" checked={this.state.asc} onChange={this.handleChangeAsc}/>
                     <input type="text" id="min_price" placeholder="minimum price" onChange={this.handleChange} value={this.state.min_price}/>
-                    <input type="text" id="max_price" placeholder="maximum price" onChange={this.handleChange} value={this.state.max_price}/>
+                    <input type="text" id="max_price" placeholder="maximum price" onChange={this.handleChange} value={this.state.max_price} required />
                     <input type="submit" />
                 </form>
                 { currentCatalogComicsy && currentCatalogComicsy.length ? (
