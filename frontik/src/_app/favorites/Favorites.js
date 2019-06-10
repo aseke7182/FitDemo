@@ -44,8 +44,14 @@ class Favorites extends Component {
                                 {
                                     fav.magazines.map((mag,index) => (
                                         <div key={mag.id} >
-                                            <h1>{mag.name}</h1><br></br>
-                                            <button onClick={()=>{this.handleRemoveFromFavorites(fav.id, fav.magazines, mag.id)}}>Remove</button>
+                                            <div className="BasketItems__params">
+                                                <div className="Basket__items__insides">
+                                                <h1 className="move insides">{mag.name}</h1><br></br>
+                                                <button className="remove__button" onClick={()=>{this.handleRemoveFromFavorites(fav.id, fav.magazines, mag.id)}}>Remove</button>
+                                                </div>
+                                            </div>
+                                            
+                                            
                                         </div>
                                     ))
                                 }

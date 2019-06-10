@@ -136,26 +136,35 @@ class Comicsy extends Component {
         return (
             <div>
                 <div>
-                    Comics List:
-                    <NavLink to="/catalogs" onClick={()=>{this.handleClickGoBack()}}>Go Back</NavLink>
+                    <div className="zzzz">
+                        <p >Comics List: <NavLink to="/catalogs" className="back__catalog" onClick={()=>{this.handleClickGoBack()}}>Go Back</NavLink></p>
+                    </div>
+                    
+                    
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text" id="name" placeholder="name" onChange={this.handleChange} value={this.state.name} required />
-                        <input type="text" id="price" placeholder="Price" onChange={this.handleChange} value={this.state.price} required />
-                        <input type="file" id="image" onChange={this.handleImageChange} required accept="image/png, image/jpeg" />
-                        <input type="submit"/>
+                        <div className="comics__create__wrapper">
+                            <h1 className="comics__title__add">Add Your Comics</h1>
+                            <input className="comics__name" style={{marginBottom: 1 + '%'}} type="text" id="name" placeholder="name" onChange={this.handleChange} value={this.state.name} required />
+                            <input className="comics__price" style={{marginBottom: 1 + '%'}} type="text" id="price" placeholder="Price" onChange={this.handleChange} value={this.state.price} required />
+                            <input className="comics__image" type="file" id="image" onChange={this.handleImageChange} required accept="image/png, image/jpeg" />
+                            <input className="comics__button btn btn-success" type="submit"/>
+                        </div>
                     </form>
                 </div>
                 <form onSubmit={this.handleSearch} >
-                    <input type="text" id="search" placeholder="search by name" onChange={this.handleChange} value={this.state.search} />
-                    <select id="orderby" onChange={this.handleChange} value={this.setState.orderby} >
-                        <option value="name">name</option>
-                        <option value="date">date</option>
-                        <option value="price">price</option>
-                    </select>
-                    <input type="checkbox" checked={this.state.asc} onChange={this.handleChangeAsc}/>
-                    <input type="text" id="min_price" placeholder="minimum price" onChange={this.handleChange} value={this.state.min_price}/>
-                    <input type="text" id="max_price" placeholder="maximum price" onChange={this.handleChange} value={this.state.max_price}/>
-                    <input type="submit" />
+                    <div className="search__notation"><p >Note: You can enter name of the comics inside Search input area to find appropriate comics. Options fields offers you possibility to order comics list by name, date, price(ascending order by default). You can tick checkbox which will allow you to order comics list in descending order. And finaly sort comics my minimum and maximum prices together or separetely</p></div>
+                    <div className="search__form__wrapper">
+                        <input className="search__name" type="text" id="search" placeholder="Search by name" onChange={this.handleChange} value={this.state.search} />
+                        <select className="search__order__options" id="orderby" onChange={this.handleChange} value={this.setState.orderby} >
+                            <option value="name">name</option>
+                            <option value="date">date</option>
+                            <option value="price">price</option>
+                        </select>
+                        <input className="search__reverse__ordering" type="checkbox" checked={this.state.asc} onChange={this.handleChangeAsc}/>
+                        <input className="search__name" type="text" id="min_price" placeholder="minimum price" onChange={this.handleChange} value={this.state.min_price}/>
+                        <input className="search__name" type="text" id="max_price" placeholder="maximum price" onChange={this.handleChange} value={this.state.max_price}/>
+                        <input className="btn btn-warning" type="submit" />
+                    </div>    
                 </form>
                 { currentCatalogComicsy && currentCatalogComicsy.length ? (
                 <div className="CurrentCatalogComics">
@@ -164,21 +173,26 @@ class Comicsy extends Component {
                         currentCatalogComicsy.map((curcatcomics, index) => (
                             <div
                                 key={curcatcomics.id}
-                                className={`CurrentCatalogComics__comics`}
+                                className={`CurrentCatalogComics__comics `}
                                 onClick={()=>{this.handleComicsyClick(curcatcomics.catalog, curcatcomics, index)}}
                             >
                                 {/* <NavLink to={this.props.location.pathname + '/comments'} > */}
                                 {/* {console.log(curcatcomics)} */}
-                                <p>{curcatcomics.name}</p>
-                                <br></br>
-                                <img src={curcatcomics.image} alt={curcatcomics.image} width="200px" ></img>
-                                <br></br>
-                                <p className="price">₸{ curcatcomics.price}</p>
-                                <p>Added: at {curcatcomics.date}</p>
-                                <p>By {curcatcomics.owner.username}</p>
-                                {/* </NavLink> */}
-                                <button onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button><br></br>
-                                <button onClick={()=>{this.handleChooseMagazines(curcatcomics.id)}}>Choose to add to Favorites</button>
+                                <div className="col">
+                                    <p className="response__comics__title">{curcatcomics.name}</p>
+                                    <br></br>
+                                    <img className="response__comics__image" src={curcatcomics.image} alt={curcatcomics.image} width="500px" height="500px" ></img>
+                                    <br></br>
+                                    <p className="response__comics__price">₸ { curcatcomics.price}</p>
+                                    <p className="response__comics__date">Added at: {curcatcomics.date}</p>
+                                    <p className="response__comics__owner">By {curcatcomics.owner.username}</p>
+                                    {/* </NavLink> */}
+                                    <div className="row">
+                                        <div className="col"><button className="add__basket btn btn-primary" onClick={ () => {this.handleAddToBasket(curcatcomics)}}>Add to Basket</button><br></br></div>
+                                        <div className="col"><button className="add__basket btn btn-success" onClick={()=>{this.handleChooseMagazines(curcatcomics.id)}}>Choose to add to Favorites</button></div>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         ))
                     }                    

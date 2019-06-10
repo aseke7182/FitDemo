@@ -17,7 +17,7 @@ def todayttime():
 
 class Magazine(models.Model):
     name = models.CharField(max_length=200)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=10)
     catalog = models.ForeignKey(Catalog, on_delete=models.PROTECT, related_name='foods')
     price = models.IntegerField(default=500)
     image = models.ImageField(upload_to="images", null=True, default=None)
@@ -59,7 +59,7 @@ class Developer(models.Model):
 class Comment(models.Model):
     text = models.CharField(max_length=9500)
     rating = models.IntegerField()
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=10)
     magazine = models.ForeignKey(Magazine, on_delete=models.CASCADE, related_name='comments')
 
 

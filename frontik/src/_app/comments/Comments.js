@@ -31,6 +31,7 @@ class Comments extends Component {
 	handleAddComment = (catalogId, comicsId)=>{
 		const{ addComment } = this.props;
 		addComment( this.state.text,  this.state.rating, catalogId, comicsId)
+		console.log(comicsId)
 	}
 
 	render() {
@@ -77,9 +78,9 @@ class Comments extends Component {
 				</div>
 			): (
 				<div>{currentComics && currentCatalog? (
-					<div className="downward ">No Comments</div>
+					<div className="downward" style={{marginLeft: 5 + '%'}}>No Comments</div>
 				):(
-					<div className="please__choose">Please choose appropriate comics to see comments</div>
+					<div className="downward" style={{marginLeft: 5 + '%'}}>Please choose appropriate comics to see comments</div>
 				)}
 				</div>
 			)} 

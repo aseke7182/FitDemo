@@ -1,12 +1,109 @@
 .CurrentCatalogComics{
-    display: flex;
-    justify-content: space-evenly;
+   position: relative;
 }
 .CurrentCatalogComics__comics{
     display: flex;
     flex-direction: column;
     text-align: center;
+    border: dashed darkslateblue 40px;
+    padding: 2% 0%;
 }
-.price{
-	margin-bottom: 3em;
+.zzzz{
+    margin-left: 5%;
+    margin-top: 2%; 
+}
+.back__catalog{
+    border: 1px solid black;
+    border-radius: 3px;
+    background: red;
+}
+.comics__create__wrapper{
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+.comics__name{
+    max-width: 400px;
+    height: 40px;
+    border: 4px rgb(255, 137, 255) solid;
+    margin-left: 5%;
+    border-radius: 20px;
+    padding-left: 1%;
+}
+.comics__price{
+    max-width: 100px;
+    height: 40px;
+    border: 4px rgb(255, 137, 255) solid;
+    border-radius: 20px;
+    margin-left: 5%;
+    padding-left: 1%;
+}
+.comics__image{
+    max-width: 300px;
+    height: 40px;
+    margin-left: 5%;
+}
+.comics__button{
+    max-width: 100px;
+    margin-left: 5%;
+}
+.comics__title__add{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 1%;
+    margin-left: 5%; 
+}
+.search__notation{
+    margin: 2% 5%;
+    font: bold;
+    font-size: 12px;
+    color: rgb(255, 177, 31);
+}
+.search__form__wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2% 5%;
+}
+.search__name{
+    height: 40px;
+    border: 4px rgb(137, 178, 255) solid;
+    border-radius: 20px;
+    padding-left: 1%;
+}
+.search__order__options{
+    border: 4px rgb(137, 178, 255) solid;
+    padding-left: 1%;
+}
+.search__reverse__ordering{
+    height: 40px;
+    width: 40px;
+}
+.add__basket{
+    max-width: 300px;
+}  
+.response__comics__image{
+    border: rgb(207, 255, 136) double 20px;
+}
+.response__comics__price{
+    margin-top: 1%;
+    color: darkred;
+    font-weight: bold;
+    font-size: 16px;
+}
+.response__comics__date{
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 700;
+    color:darkorange;
+}
+.response__comics__owner{
+    text-decoration: underline;
+    color: darkblue;
+    font-size: 17px;
+    font-weight: bolder;
+}
+.response__comics__title{
+    font-weight: bolder;
+    font-size: 25px;
+    text-decoration: overline;
 }

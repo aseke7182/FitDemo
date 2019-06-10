@@ -29,7 +29,7 @@ export class Header extends Component {
 
         const mobilefiles = logged===true ? (
             <div>
-                <li><NavLink to="">{username}</NavLink></li>
+                {/* <li><NavLink to="">{username}</NavLink></li> */}
                 <li><NavLink to="/basket">Basket</NavLink></li>
                 <li><NavLink to="/favorites">Favorites</NavLink></li>
                 <li onClick={this.logout} ><NavLink to="">Logout</NavLink></li>
